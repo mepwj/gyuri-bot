@@ -52,6 +52,19 @@ Discord.js v14 기반의 귀엽고 다재다능한 Discord 봇입니다!
 - Node.js 18.0.0 이상
 - npm 또는 yarn
 - Discord 봇 토큰
+- Docker & Docker Compose (서버 배포시)
+
+### GitHub Actions 자동 배포 설정
+GitHub Actions를 통한 자동 배포를 위해 다음 Secrets를 설정해야 합니다:
+
+1. **GitHub 저장소 Settings > Secrets and variables > Actions**
+2. **다음 Secrets 추가:**
+   - `HOST`: 서버 IP 주소
+   - `USERNAME`: SSH 사용자명
+   - `PASSWORD`: SSH 비밀번호
+   - `PORT`: SSH 포트 (기본: 22)
+   - `DISCORD_TOKEN`: Discord 봇 토큰
+   - `CLIENT_ID`: Discord 애플리케이션 Client ID
 
 ### 설치 단계
 

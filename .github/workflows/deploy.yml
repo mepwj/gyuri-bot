@@ -18,6 +18,7 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
+        envs: DISCORD_TOKEN,CLIENT_ID
         script: |
           # 프로젝트 디렉토리 확인 및 생성
           if [ ! -d "~/gyuri-bot" ]; then
@@ -28,6 +29,10 @@ jobs:
           
           # 최신 코드 pull
           git pull origin main
+          
+          # .env 파일 생성 (GitHub Secrets에서 환경변수 설정)
+          echo "DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}" > .env
+          echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> .env
           
           # Docker Compose 실행 (새로운 문법 사용)
           docker compose down
