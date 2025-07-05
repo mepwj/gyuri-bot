@@ -1,0 +1,38 @@
+{
+  "bot": {
+    "name": "규리봇",
+    "version": "1.0.0",
+    "description": "귀여운 규리봇이 도와드릴게요! 🍊",
+    "color": "#FFA500",
+    "prefix": "!",
+    "cooldown": 3
+  },
+  "emojis": {
+    "success": "✅",
+    "error": "❌",
+    "loading": "⏳",
+    "gyuri": "🍊",
+    "heart": "💖",
+    "sparkles": "✨",
+    "fire": "🔥",
+    "book": "📚",
+    "food": "🍽️",
+    "dice": "🎲",
+    "thinking": "🤔",
+    "party": "🎉"
+  },
+  "responses": {
+    "error": {
+      "generic": "앗! 뭔가 잘못됐어요... 다시 시도해주세요! 😢",
+      "cooldown": "조금만 기다려주세요! {time}초 후에 다시 사용할 수 있어요! ⏰",
+      "permission": "이 명령어를 사용할 권한이 없어요! 😅",
+      "notFound": "그런 명령어는 없는 것 같아요... 🤔"
+    }
+  },
+  "features": {
+    "enableLLM": false,
+    "enableAutoResponse": true,
+    "enableLogging": true,
+    "enableCooldown": true
+  }
+}
