@@ -95,6 +95,13 @@ npm run dev
 
 ## ⚙️ 환경 설정
 
+### Discord 봇 토큰 얻기
+1. [Discord Developer Portal](https://discord.com/developers/applications)에 접속
+2. "New Application" 클릭하여 애플리케이션 생성
+3. 좌측 메뉴에서 "Bot" 클릭
+4. "Reset Token" 클릭하여 토큰 생성 (한 번만 표시되므로 안전하게 보관)
+5. "General Information"에서 CLIENT_ID 확인
+
 ### .env 파일 설정
 ```env
 # Discord Bot Configuration
@@ -112,6 +119,30 @@ OPENAI_API_KEY=your_openai_api_key_here
 # Environment
 NODE_ENV=development
 ```
+
+### 서버 배포시 환경변수 설정
+Docker Compose를 사용하는 경우, 서버에 `.env` 파일을 생성해야 합니다:
+
+1. **서버에 .env 파일 생성**
+```bash
+cd ~/gyuri-bot
+cp .env.example .env
+nano .env  # 또는 선호하는 에디터 사용
+```
+
+2. **필수 환경변수 입력**
+```env
+DISCORD_TOKEN=실제_봇_토큰_입력
+CLIENT_ID=실제_클라이언트_ID_입력
+```
+
+3. **Docker Compose 재시작**
+```bash
+docker compose down
+docker compose up -d
+```
+
+⚠️ **중요**: `.env` 파일은 절대 Git에 커밋하지 마세요!
 
 ### config.json 커스터마이징
 `config/config.json` 파일에서 봇의 다양한 설정을 변경할 수 있습니다.
