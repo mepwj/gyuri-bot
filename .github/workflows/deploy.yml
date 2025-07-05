@@ -19,9 +19,20 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         script: |
+          # 프로젝트 디렉토리 확인 및 생성
+          if [ ! -d "~/gyuri-bot" ]; then
+            cd ~
+            git clone https://github.com/${{ github.repository }}.git gyuri-bot
+          fi
           cd ~/gyuri-bot
+          
+          # 최신 코드 pull
           git pull origin main
-          docker-compose down
-          docker-compose build --no-cache
-          docker-compose up -d
-          docker-compose logs --tail=50
+          
+          # Docker Compose 실행 (새로운 문법 사용)
+          docker compose down
+          docker compose build --no-cache
+          docker compose up -d
+          
+          # 로그 확인
+          docker compose logs --tail=50
