@@ -69,6 +69,580 @@
       "answer": 2,
       "category": "science",
       "difficulty": "medium"
+    },
+    {
+      "question": "한국의 화폐 단위는?",
+      "options": ["엔", "위안", "원", "달러"],
+      "answer": 2,
+      "category": "general",
+      "difficulty": "easy"
+    },
+    {
+      "question": "2 × 5 = ?",
+      "options": ["7", "10", "12", "15"],
+      "answer": 1,
+      "category": "math",
+      "difficulty": "easy"
+    },
+    {
+      "question": "물의 화학식은?",
+      "options": ["H2O", "CO2", "O2", "NaCl"],
+      "answer": 0,
+      "category": "science",
+      "difficulty": "easy"
+    },
+    {
+      "question": "CSS는 무엇의 약자인가요?",
+      "options": ["Computer Style Sheets", "Creative Style Sheets", "Cascading Style Sheets", "Colorful Style Sheets"],
+      "answer": 2,
+      "category": "programming",
+      "difficulty": "easy"
+    },
+    {
+      "question": "일본의 수도는?",
+      "options": ["오사카", "교토", "도쿄", "나고야"],
+      "answer": 2,
+      "category": "geography",
+      "difficulty": "easy"
+    },
+    {
+      "question": "조선을 건국한 사람은?",
+      "options": ["이성계", "왕건", "김유신", "이순신"],
+      "answer": 0,
+      "category": "history",
+      "difficulty": "medium"
+    },
+    {
+      "question": "지구에서 달까지의 평균 거리는?",
+      "options": ["38,000km", "384,000km", "3,840,000km", "38,400km"],
+      "answer": 1,
+      "category": "science",
+      "difficulty": "hard"
+    },
+    {
+      "question": "React는 어느 회사에서 만들었나요?",
+      "options": ["Google", "Microsoft", "Facebook", "Amazon"],
+      "answer": 2,
+      "category": "programming",
+      "difficulty": "medium"
+    },
+    {
+      "question": "'감사합니다'를 일본어로 하면?",
+      "options": ["こんにちは", "さようなら", "ありがとう", "すみません"],
+      "answer": 2,
+      "category": "language",
+      "difficulty": "medium"
+    },
+    {
+      "question": "피타고라스 정리에서 a² + b² = ?",
+      "options": ["c", "2c", "c²", "c³"],
+      "answer": 2,
+      "category": "math",
+      "difficulty": "medium"
+    },
+    {
+      "question": "한국의 국화는?",
+      "options": ["장미", "백합", "무궁화", "개나리"],
+      "answer": 2,
+      "category": "general",
+      "difficulty": "easy"
+    },
+    {
+      "question": "HTTP 메서드가 아닌 것은?",
+      "options": ["GET", "POST", "SEND", "DELETE"],
+      "answer": 2,
+      "category": "programming",
+      "difficulty": "medium"
+    },
+    {
+      "question": "아프리카에서 가장 큰 나라는?",
+      "options": ["나이지리아", "알제리", "이집트", "남아프리카공화국"],
+      "answer": 1,
+      "category": "geography",
+      "difficulty": "hard"
+    },
+    {
+      "question": "원주율 π의 근사값은?",
+      "options": ["3.12", "3.14", "3.16", "3.18"],
+      "answer": 1,
+      "category": "math",
+      "difficulty": "easy"
+    },
+    {
+      "question": "광합성에 필요하지 않은 것은?",
+      "options": ["빛", "이산화탄소", "산소", "물"],
+      "answer": 2,
+      "category": "science",
+      "difficulty": "medium"
+    },
+    {
+      "question": "Node.js의 패키지 매니저는?",
+      "options": ["npm", "pip", "gem", "composer"],
+      "answer": 0,
+      "category": "programming",
+      "difficulty": "easy"
+    },
+    {
+      "question": "세종대왕이 창제한 것은?",
+      "options": ["한자", "한글", "일본어", "중국어"],
+      "answer": 1,
+      "category": "history",
+      "difficulty": "easy"
+    },
+    {
+      "question": "미국의 수도는?",
+      "options": ["뉴욕", "로스앤젤레스", "워싱턴 D.C.", "시카고"],
+      "answer": 2,
+      "category": "geography",
+      "difficulty": "easy"
+    },
+    {
+      "question": "100 ÷ 4 = ?",
+      "options": ["20", "25", "30", "40"],
+      "answer": 1,
+      "category": "math",
+      "difficulty": "easy"
+    },
+    {
+      "question": "태양계에서 지구는 태양으로부터 몇 번째 행성인가요?",
+      "options": ["2번째", "3번째", "4번째", "5번째"],
+      "answer": 1,
+      "category": "science",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Python에서 주석을 나타내는 기호는?",
+      "options": ["//", "#", "/*", "--"],
+      "answer": 1,
+      "category": "programming",
+      "difficulty": "easy"
+    },
+    {
+      "question": "영어 알파벳은 총 몇 개인가요?",
+      "options": ["24", "25", "26", "27"],
+      "answer": 2,
+      "category": "language",
+      "difficulty": "easy"
+    },
+    {
+      "question": "한국의 광복절은 언제인가요?",
+      "options": ["3월 1일", "6월 25일", "8월 15일", "10월 3일"],
+      "answer": 2,
+      "category": "history",
+      "difficulty": "easy"
+    },
+    {
+      "question": "지구의 자전 주기는?",
+      "options": ["12시간", "24시간", "48시간", "72시간"],
+      "answer": 1,
+      "category": "science",
+      "difficulty": "easy"
+    },
+    {
+      "question": "데이터베이스에서 데이터를 조회하는 SQL 명령어는?",
+      "options": ["INSERT", "UPDATE", "SELECT", "DELETE"],
+      "answer": 2,
+      "category": "programming",
+      "difficulty": "easy"
+    },
+    {
+      "question": "유럽연합(EU)의 공용 화폐는?",
+      "options": ["달러", "파운드", "유로", "프랑"],
+      "answer": 2,
+      "category": "general",
+      "difficulty": "medium"
+    },
+    {
+      "question": "√16 = ?",
+      "options": ["2", "3", "4", "8"],
+      "answer": 2,
+      "category": "math",
+      "difficulty": "easy"
+    },
+    {
+      "question": "세계에서 가장 긴 강은?",
+      "options": ["아마존강", "나일강", "양쯔강", "미시시피강"],
+      "answer": 1,
+      "category": "geography",
+      "difficulty": "medium"
+    },
+    {
+      "question": "HTML에서 가장 큰 제목 태그는?",
+      "options": ["<h6>", "<h1>", "<title>", "<header>"],
+      "answer": 1,
+      "category": "programming",
+      "difficulty": "easy"
+    },
+    {
+      "question": "'I love you'를 한국어로 하면?",
+      "options": ["고맙습니다", "사랑합니다", "미안합니다", "안녕하세요"],
+      "answer": 1,
+      "category": "language",
+      "difficulty": "easy"
+    },
+    {
+      "question": "임진왜란이 일어난 년도는?",
+      "options": ["1392년", "1592년", "1692년", "1792년"],
+      "answer": 1,
+      "category": "history",
+      "difficulty": "medium"
+    },
+    {
+      "question": "빛의 3원색이 아닌 것은?",
+      "options": ["빨강", "초록", "파랑", "노랑"],
+      "answer": 3,
+      "category": "science",
+      "difficulty": "medium"
+    },
+    {
+      "question": "JavaScript에서 배열을 선언하는 방법은?",
+      "options": ["array[]", "[]", "{}", "Array[]"],
+      "answer": 1,
+      "category": "programming",
+      "difficulty": "medium"
+    },
+    {
+      "question": "올림픽은 몇 년마다 열리나요?",
+      "options": ["2년", "3년", "4년", "5년"],
+      "answer": 2,
+      "category": "general",
+      "difficulty": "easy"
+    },
+    {
+      "question": "10진수 10을 2진수로 변환하면?",
+      "options": ["1010", "1100", "1001", "1111"],
+      "answer": 0,
+      "category": "math",
+      "difficulty": "medium"
+    },
+    {
+      "question": "남극과 북극 중 더 추운 곳은?",
+      "options": ["남극", "북극", "같다", "계절에 따라 다르다"],
+      "answer": 0,
+      "category": "geography",
+      "difficulty": "medium"
+    },
+    {
+      "question": "Git에서 원격 저장소의 변경사항을 가져오는 명령어는?",
+      "options": ["git push", "git pull", "git clone", "git fetch"],
+      "answer": 1,
+      "category": "programming",
+      "difficulty": "medium"
+    },
+    {
+      "question": "스페인어로 '안녕하세요'는?",
+      "options": ["Bonjour", "Hola", "Ciao", "Guten Tag"],
+      "answer": 1,
+      "category": "language",
+      "difficulty": "medium"
+    },
+    {
+      "question": "한국 전쟁이 시작된 날짜는?",
+      "options": ["1945년 8월 15일", "1948년 8월 15일", "1950년 6월 25일", "1953년 7월 27일"],
+      "answer": 2,
+      "category": "history",
+      "difficulty": "medium"
+    },
+    {
+      "question": "DNA의 이중나선 구조를 발견한 과학자는?",
+      "options": ["뉴턴", "아인슈타인", "왓슨과 크릭", "다윈"],
+      "answer": 2,
+      "category": "science",
+      "difficulty": "hard"
+    },
+    {
+      "question": "React에서 상태를 관리하는 Hook은?",
+      "options": ["useEffect", "useState", "useContext", "useReducer"],
+      "answer": 1,
+      "category": "programming",
+      "difficulty": "medium"
+    },
+    {
+      "question": "한국의 국보 1호는?",
+      "options": ["경복궁", "불국사", "숭례문", "석굴암"],
+      "answer": 2,
+      "category": "general",
+      "difficulty": "medium"
+    },
+    {
+      "question": "원의 넓이 공식은?",
+      "options": ["2πr", "πr²", "πr", "2πr²"],
+      "answer": 1,
+      "category": "math",
+      "difficulty": "medium"
+    },
+    {
+      "question": "세계에서 가장 깊은 해구는?",
+      "options": ["마리아나 해구", "푸에르토리코 해구", "자바 해구", "일본 해구"],
+      "answer": 0,
+      "category": "geography",
+      "difficulty": "hard"
+    },
+    {
+      "question": "CSS에서 요소를 가운데 정렬하는 속성은?",
+      "options": ["align-center", "text-align", "center", "margin-center"],
+      "answer": 1,
+      "category": "programming",
+      "difficulty": "medium"
+    },
+    {
+      "question": "중국어로 숫자 '4'를 어떻게 읽나요?",
+      "options": ["이", "싼", "쓰", "우"],
+      "answer": 2,
+      "category": "language",
+      "difficulty": "medium"
+    },
+    {
+      "question": "고려를 건국한 왕은?",
+      "options": ["왕건", "견훤", "궁예", "김춘추"],
+      "answer": 0,
+      "category": "history",
+      "difficulty": "medium"
+    },
+    {
+      "question": "물이 끓는 온도는 섭씨 몇 도인가요?",
+      "options": ["90도", "100도", "110도", "120도"],
+      "answer": 1,
+      "category": "science",
+      "difficulty": "easy"
+    },
+    {
+      "question": "SQL에서 테이블을 생성하는 명령어는?",
+      "options": ["CREATE TABLE", "MAKE TABLE", "NEW TABLE", "INSERT TABLE"],
+      "answer": 0,
+      "category": "programming",
+      "difficulty": "medium"
+    },
+    {
+      "question": "FIFA 월드컵은 몇 년마다 열리나요?",
+      "options": ["2년", "3년", "4년", "5년"],
+      "answer": 2,
+      "category": "general",
+      "difficulty": "easy"
+    },
+    {
+      "question": "log₁₀(1000) = ?",
+      "options": ["2", "3", "4", "10"],
+      "answer": 1,
+      "category": "math",
+      "difficulty": "hard"
+    },
+    {
+      "question": "세계에서 가장 작은 나라는?",
+      "options": ["모나코", "산마리노", "바티칸 시국", "리히텐슈타인"],
+      "answer": 2,
+      "category": "geography",
+      "difficulty": "medium"
+    },
+    {
+      "question": "HTTP 상태 코드 200의 의미는?",
+      "options": ["실패", "성공", "리다이렉트", "권한 없음"],
+      "answer": 1,
+      "category": "programming",
+      "difficulty": "easy"
+    },
+    {
+      "question": "프랑스어로 '감사합니다'는?",
+      "options": ["Merci", "Bonjour", "Au revoir", "S'il vous plaît"],
+      "answer": 0,
+      "category": "language",
+      "difficulty": "medium"
+    },
+    {
+      "question": "조선시대 4대 사화가 아닌 것은?",
+      "options": ["무오사화", "갑자사화", "기묘사화", "계유사화"],
+      "answer": 3,
+      "category": "history",
+      "difficulty": "hard"
+    },
+    {
+      "question": "주기율표에서 H는 무엇을 나타내나요?",
+      "options": ["헬륨", "수소", "하프늄", "홀뮴"],
+      "answer": 1,
+      "category": "science",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Python에서 문자열을 정수로 변환하는 함수는?",
+      "options": ["str()", "int()", "float()", "convert()"],
+      "answer": 1,
+      "category": "programming",
+      "difficulty": "easy"
+    },
+    {
+      "question": "태극기의 4괘 중 하늘을 나타내는 것은?",
+      "options": ["건", "곤", "감", "리"],
+      "answer": 0,
+      "category": "general",
+      "difficulty": "hard"
+    },
+    {
+      "question": "15% 할인된 가격이 8,500원일 때, 원래 가격은?",
+      "options": ["9,000원", "9,500원", "10,000원", "10,500원"],
+      "answer": 2,
+      "category": "math",
+      "difficulty": "medium"
+    },
+    {
+      "question": "세계에서 인구가 가장 많은 나라는?",
+      "options": ["인도", "중국", "미국", "인도네시아"],
+      "answer": 1,
+      "category": "geography",
+      "difficulty": "easy"
+    },
+    {
+      "question": "JavaScript에서 함수를 선언하는 키워드가 아닌 것은?",
+      "options": ["function", "const", "var", "def"],
+      "answer": 3,
+      "category": "programming",
+      "difficulty": "medium"
+    },
+    {
+      "question": "한글의 자음은 몇 개인가요?",
+      "options": ["14개", "19개", "21개", "24개"],
+      "answer": 0,
+      "category": "language",
+      "difficulty": "medium"
+    },
+    {
+      "question": "백제의 수도가 아니었던 곳은?",
+      "options": ["한성", "웅진", "사비", "경주"],
+      "answer": 3,
+      "category": "history",
+      "difficulty": "medium"
+    },
+    {
+      "question": "뉴턴의 운동 법칙은 몇 개인가요?",
+      "options": ["2개", "3개", "4개", "5개"],
+      "answer": 1,
+      "category": "science",
+      "difficulty": "medium"
+    },
+    {
+      "question": "Git에서 브랜치를 생성하는 명령어는?",
+      "options": ["git branch", "git create", "git new", "git make"],
+      "answer": 0,
+      "category": "programming",
+      "difficulty": "medium"
+    },
+    {
+      "question": "한국의 최남단 섬은?",
+      "options": ["제주도", "마라도", "거제도", "울릉도"],
+      "answer": 1,
+      "category": "general",
+      "difficulty": "medium"
+    },
+    {
+      "question": "정육면체의 면의 개수는?",
+      "options": ["4개", "5개", "6개", "8개"],
+      "answer": 2,
+      "category": "math",
+      "difficulty": "easy"
+    },
+    {
+      "question": "아마존 강이 흐르는 대륙은?",
+      "options": ["아시아", "아프리카", "남아메리카", "북아메리카"],
+      "answer": 2,
+      "category": "geography",
+      "difficulty": "easy"
+    },
+    {
+      "question": "CSS에서 색상을 지정하는 방법이 아닌 것은?",
+      "options": ["#FF0000", "rgb(255,0,0)", "red", "color(255,0,0)"],
+      "answer": 3,
+      "category": "programming",
+      "difficulty": "medium"
+    },
+    {
+      "question": "독일어로 '안녕하세요'는?",
+      "options": ["Guten Tag", "Danke", "Auf Wiedersehen", "Bitte"],
+      "answer": 0,
+      "category": "language",
+      "difficulty": "medium"
+    },
+    {
+      "question": "신라의 삼국통일 년도는?",
+      "options": ["660년", "668년", "676년", "685년"],
+      "answer": 2,
+      "category": "history",
+      "difficulty": "hard"
+    },
+    {
+      "question": "음속은 초속 약 몇 미터인가요?",
+      "options": ["240m", "340m", "440m", "540m"],
+      "answer": 1,
+      "category": "science",
+      "difficulty": "medium"
+    },
+    {
+      "question": "React에서 컴포넌트의 생명주기 메서드가 아닌 것은?",
+      "options": ["componentDidMount", "componentWillUpdate", "componentDidCatch", "componentDidRender"],
+      "answer": 3,
+      "category": "programming",
+      "difficulty": "hard"
+    },
+    {
+      "question": "윤년은 몇 년마다 오나요?",
+      "options": ["2년", "3년", "4년", "5년"],
+      "answer": 2,
+      "category": "general",
+      "difficulty": "easy"
+    },
+    {
+      "question": "팩토리얼 5! = ?",
+      "options": ["60", "100", "120", "150"],
+      "answer": 2,
+      "category": "math",
+      "difficulty": "medium"
+    },
+    {
+      "question": "세계에서 가장 높은 산은?",
+      "options": ["K2", "에베레스트", "킬리만자로", "몽블랑"],
+      "answer": 1,
+      "category": "geography",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Python에서 리스트에 요소를 추가하는 메서드는?",
+      "options": ["add()", "append()", "insert()", "push()"],
+      "answer": 1,
+      "category": "programming",
+      "difficulty": "easy"
+    },
+    {
+      "question": "러시아어로 '감사합니다'는?",
+      "options": ["Спасибо", "Привет", "До свидания", "Пожалуйста"],
+      "answer": 0,
+      "category": "language",
+      "difficulty": "hard"
+    },
+    {
+      "question": "한국의 첫 우주인은?",
+      "options": ["이소연", "김소연", "박소연", "최소연"],
+      "answer": 0,
+      "category": "history",
+      "difficulty": "medium"
+    },
+    {
+      "question": "절대온도 0도는 섭씨 몇 도인가요?",
+      "options": ["-173.15도", "-273.15도", "-373.15도", "-473.15도"],
+      "answer": 1,
+      "category": "science",
+      "difficulty": "hard"
+    },
+    {
+      "question": "SQL에서 데이터를 삭제하는 명령어는?",
+      "options": ["REMOVE", "DELETE", "DROP", "ERASE"],
+      "answer": 1,
+      "category": "programming",
+      "difficulty": "medium"
+    },
+    {
+      "question": "대한민국 헌법 제1조 1항은?",
+      "options": ["대한민국은 민주공화국이다", "대한민국의 주권은 국민에게 있다", "모든 국민은 법 앞에 평등하다", "대한민국의 영토는 한반도와 그 부속도서로 한다"],
+      "answer": 0,
+      "category": "general",
+      "difficulty": "medium"
     }
   ],
   "categories": ["geography", "math", "science", "programming", "language", "history", "general"],
