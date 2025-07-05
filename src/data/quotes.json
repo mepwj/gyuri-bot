@@ -1,0 +1,96 @@
+{
+  "quotes": [
+    {
+      "text": "오늘 하루도 최선을 다한 당신, 정말 멋져요!",
+      "author": "규리",
+      "category": "motivation"
+    },
+    {
+      "text": "실수해도 괜찮아요. 그게 성장하는 방법이에요.",
+      "author": "규리",
+      "category": "growth"
+    },
+    {
+      "text": "작은 친절이 큰 변화를 만들어요.",
+      "author": "규리",
+      "category": "kindness"
+    },
+    {
+      "text": "꿈은 이루어져요. 포기하지 마세요!",
+      "author": "월트 디즈니",
+      "category": "dream"
+    },
+    {
+      "text": "가장 큰 영광은 한 번도 넘어지지 않는 것이 아니라, 넘어질 때마다 일어서는 것이다.",
+      "author": "공자",
+      "category": "perseverance"
+    },
+    {
+      "text": "행복은 이미 당신 안에 있어요. 찾아보세요!",
+      "author": "규리",
+      "category": "happiness"
+    },
+    {
+      "text": "오늘이 당신의 인생에서 가장 젊은 날이에요.",
+      "author": "규리",
+      "category": "life"
+    },
+    {
+      "text": "1%의 가능성이 있다면, 99%의 노력으로 이루어낼 수 있어요.",
+      "author": "규리",
+      "category": "effort"
+    },
+    {
+      "text": "미래는 현재 우리가 무엇을 하는가에 달려 있다.",
+      "author": "마하트마 간디",
+      "category": "future"
+    },
+    {
+      "text": "자신을 믿는 것이 성공의 첫걸음이에요.",
+      "author": "규리",
+      "category": "confidence"
+    },
+    {
+      "text": "실패는 잠시 쉬어가는 것일 뿐, 포기만 아니면 돼요.",
+      "author": "규리",
+      "category": "failure"
+    },
+    {
+      "text": "오늘 하루, 한 가지 좋은 일을 해보세요.",
+      "author": "규리",
+      "category": "daily"
+    },
+    {
+      "text": "당신의 가치는 다른 사람이 정하는 것이 아니에요.",
+      "author": "규리",
+      "category": "self-worth"
+    },
+    {
+      "text": "어제보다 나은 오늘이 되도록 노력해요.",
+      "author": "규리",
+      "category": "improvement"
+    },
+    {
+      "text": "웃으면 복이 와요! 오늘도 많이 웃어요!",
+      "author": "규리",
+      "category": "smile"
+    }
+  ],
+  "categories": [
+    "motivation",
+    "growth",
+    "kindness",
+    "dream",
+    "perseverance",
+    "happiness",
+    "life",
+    "effort",
+    "future",
+    "confidence",
+    "failure",
+    "daily",
+    "self-worth",
+    "improvement",
+    "smile"
+  ]
+}

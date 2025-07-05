@@ -1,0 +1,2210 @@
+{
+  "lunch": [
+    {
+      "name": "김치찌개",
+      "category": "한식",
+      "emoji": "🍲",
+      "description": "얼큰하고 시원한 김치찌개!"
+    },
+    {
+      "name": "파스타",
+      "category": "양식",
+      "emoji": "🍝",
+      "description": "부드러운 크림 파스타!"
+    },
+    {
+      "name": "초밥",
+      "category": "일식",
+      "emoji": "🍣",
+      "description": "신선한 초밥 세트!"
+    },
+    {
+      "name": "짜장면",
+      "category": "중식",
+      "emoji": "🍜",
+      "description": "달콤한 짜장면!"
+    },
+    {
+      "name": "샐러드",
+      "category": "건강식",
+      "emoji": "🥗",
+      "description": "상큼한 샐러드!"
+    },
+    {
+      "name": "김밥",
+      "category": "분식",
+      "emoji": "🍙",
+      "description": "든든한 김밥!"
+    },
+    {
+      "name": "쌀국수",
+      "category": "아시안",
+      "emoji": "🍜",
+      "description": "시원한 쌀국수!"
+    },
+    {
+      "name": "햄버거",
+      "category": "패스트푸드",
+      "emoji": "🍔",
+      "description": "푸짐한 햄버거!"
+    },
+    {
+      "name": "비빔밥",
+      "category": "한식",
+      "emoji": "🍚",
+      "description": "건강한 비빔밥!"
+    },
+    {
+      "name": "돈까스",
+      "category": "일식",
+      "emoji": "🍛",
+      "description": "바삭한 돈까스!"
+    },
+    {
+      "name": "냉면",
+      "category": "한식",
+      "emoji": "🍜",
+      "description": "시원한 냉면!"
+    },
+    {
+      "name": "순대국",
+      "category": "한식",
+      "emoji": "🍲",
+      "description": "든든한 순대국!"
+    },
+    {
+      "name": "샌드위치",
+      "category": "양식",
+      "emoji": "🥪",
+      "description": "간편한 샌드위치!"
+    },
+    {
+      "name": "라멘",
+      "category": "일식",
+      "emoji": "🍜",
+      "description": "진한 라멘!"
+    },
+    {
+      "name": "팟타이",
+      "category": "아시안",
+      "emoji": "🍝",
+      "description": "태국식 볶음면!"
+    },
+    {
+      "name": "부리또",
+      "category": "멕시칸",
+      "emoji": "🌯",
+      "description": "푸짐한 부리또!"
+    },
+    {
+      "name": "카레",
+      "category": "인도/일식",
+      "emoji": "🍛",
+      "description": "향긋한 카레!"
+    },
+    {
+      "name": "제육볶음",
+      "category": "한식",
+      "emoji": "🥘",
+      "description": "매콤한 제육볶음!"
+    },
+    {
+      "name": "우동",
+      "category": "일식",
+      "emoji": "🍜",
+      "description": "따뜻한 우동!"
+    },
+    {
+      "name": "타코",
+      "category": "멕시칸",
+      "emoji": "🌮",
+      "description": "맛있는 타코!"
+    },
+    {
+      "name": "된장찌개",
+      "category": "한식",
+      "emoji": "🍲",
+      "description": "구수한 된장찌개!"
+    },
+    {
+      "name": "순두부찌개",
+      "category": "한식",
+      "emoji": "🍲",
+      "description": "부드러운 순두부찌개!"
+    },
+    {
+      "name": "부대찌개",
+      "category": "한식",
+      "emoji": "🍲",
+      "description": "푸짐한 부대찌개!"
+    },
+    {
+      "name": "청국장찌개",
+      "category": "한식",
+      "emoji": "🍲",
+      "description": "건강한 청국장찌개!"
+    },
+    {
+      "name": "불고기",
+      "category": "한식",
+      "emoji": "🥘",
+      "description": "달콤한 불고기!"
+    },
+    {
+      "name": "갈비탕",
+      "category": "한식",
+      "emoji": "🍲",
+      "description": "진한 갈비탕!"
+    },
+    {
+      "name": "설렁탕",
+      "category": "한식",
+      "emoji": "🍲",
+      "description": "뽀얀 설렁탕!"
+    },
+    {
+      "name": "곰탕",
+      "category": "한식",
+      "emoji": "🍲",
+      "description": "깊은 맛 곰탕!"
+    },
+    {
+      "name": "육개장",
+      "category": "한식",
+      "emoji": "🍲",
+      "description": "얼큰한 육개장!"
+    },
+    {
+      "name": "삼계탕",
+      "category": "한식",
+      "emoji": "🍲",
+      "description": "몸보신 삼계탕!"
+    },
+    {
+      "name": "칼국수",
+      "category": "한식",
+      "emoji": "🍜",
+      "description": "든든한 칼국수!"
+    },
+    {
+      "name": "수제비",
+      "category": "한식",
+      "emoji": "🍲",
+      "description": "쫄깃한 수제비!"
+    },
+    {
+      "name": "콩나물국밥",
+      "category": "한식",
+      "emoji": "🍲",
+      "description": "해장 콩나물국밥!"
+    },
+    {
+      "name": "감자탕",
+      "category": "한식",
+      "emoji": "🍲",
+      "description": "푸짐한 감자탕!"
+    },
+    {
+      "name": "추어탕",
+      "category": "한식",
+      "emoji": "🍲",
+      "description": "영양 추어탕!"
+    },
+    {
+      "name": "토마토파스타",
+      "category": "양식",
+      "emoji": "🍝",
+      "description": "새콤한 토마토파스타!"
+    },
+    {
+      "name": "알리오올리오",
+      "category": "양식",
+      "emoji": "🍝",
+      "description": "마늘향 알리오올리오!"
+    },
+    {
+      "name": "까르보나라",
+      "category": "양식",
+      "emoji": "🍝",
+      "description": "크리미한 까르보나라!"
+    },
+    {
+      "name": "봉골레파스타",
+      "category": "양식",
+      "emoji": "🍝",
+      "description": "조개 봉골레파스타!"
+    },
+    {
+      "name": "스테이크",
+      "category": "양식",
+      "emoji": "🥩",
+      "description": "육즙 가득 스테이크!"
+    },
+    {
+      "name": "함박스테이크",
+      "category": "양식",
+      "emoji": "🍖",
+      "description": "부드러운 함박스테이크!"
+    },
+    {
+      "name": "리조또",
+      "category": "양식",
+      "emoji": "🍚",
+      "description": "크리미한 리조또!"
+    },
+    {
+      "name": "피자",
+      "category": "양식",
+      "emoji": "🍕",
+      "description": "치즈 피자!"
+    },
+    {
+      "name": "오므라이스",
+      "category": "양식",
+      "emoji": "🍳",
+      "description": "폭신한 오므라이스!"
+    },
+    {
+      "name": "필라프",
+      "category": "양식",
+      "emoji": "🍚",
+      "description": "향긋한 필라프!"
+    },
+    {
+      "name": "그라탕",
+      "category": "양식",
+      "emoji": "🥘",
+      "description": "치즈 그라탕!"
+    },
+    {
+      "name": "소바",
+      "category": "일식",
+      "emoji": "🍜",
+      "description": "시원한 소바!"
+    },
+    {
+      "name": "텐동",
+      "category": "일식",
+      "emoji": "🍤",
+      "description": "바삭한 텐동!"
+    },
+    {
+      "name": "가츠동",
+      "category": "일식",
+      "emoji": "🍛",
+      "description": "달콤한 가츠동!"
+    },
+    {
+      "name": "규동",
+      "category": "일식",
+      "emoji": "🍛",
+      "description": "소고기 규동!"
+    },
+    {
+      "name": "오야코동",
+      "category": "일식",
+      "emoji": "🍛",
+      "description": "닭고기 오야코동!"
+    },
+    {
+      "name": "카레라이스",
+      "category": "일식",
+      "emoji": "🍛",
+      "description": "일본식 카레!"
+    },
+    {
+      "name": "하야시라이스",
+      "category": "일식",
+      "emoji": "🍛",
+      "description": "하야시라이스!"
+    },
+    {
+      "name": "짬뽕",
+      "category": "중식",
+      "emoji": "🍜",
+      "description": "얼큰한 짬뽕!"
+    },
+    {
+      "name": "탕수육",
+      "category": "중식",
+      "emoji": "🍖",
+      "description": "새콤달콤 탕수육!"
+    },
+    {
+      "name": "마파두부",
+      "category": "중식",
+      "emoji": "🥘",
+      "description": "매콤한 마파두부!"
+    },
+    {
+      "name": "볶음밥",
+      "category": "중식",
+      "emoji": "🍚",
+      "description": "고슬고슬 볶음밥!"
+    },
+    {
+      "name": "마라탕",
+      "category": "중식",
+      "emoji": "🍲",
+      "description": "얼얼한 마라탕!"
+    },
+    {
+      "name": "훠궈",
+      "category": "중식",
+      "emoji": "🥘",
+      "description": "매운 훠궈!"
+    },
+    {
+      "name": "양장피",
+      "category": "중식",
+      "emoji": "🥗",
+      "description": "새콤한 양장피!"
+    },
+    {
+      "name": "깐풍기",
+      "category": "중식",
+      "emoji": "🍗",
+      "description": "매콤한 깐풍기!"
+    },
+    {
+      "name": "라조기",
+      "category": "중식",
+      "emoji": "🍗",
+      "description": "바삭한 라조기!"
+    },
+    {
+      "name": "반미",
+      "category": "아시안",
+      "emoji": "🥪",
+      "description": "베트남 반미!"
+    },
+    {
+      "name": "분짜",
+      "category": "아시안",
+      "emoji": "🍜",
+      "description": "베트남 분짜!"
+    },
+    {
+      "name": "나시고렝",
+      "category": "아시안",
+      "emoji": "🍚",
+      "description": "인도네시아 볶음밥!"
+    },
+    {
+      "name": "똠양꿍",
+      "category": "아시안",
+      "emoji": "🍲",
+      "description": "태국 똠양꿍!"
+    },
+    {
+      "name": "카오팟",
+      "category": "아시안",
+      "emoji": "🍚",
+      "description": "태국식 볶음밥!"
+    },
+    {
+      "name": "떡볶이",
+      "category": "분식",
+      "emoji": "🍢",
+      "description": "매콤한 떡볶이!"
+    },
+    {
+      "name": "라면",
+      "category": "분식",
+      "emoji": "🍜",
+      "description": "끓인 라면!"
+    },
+    {
+      "name": "만두",
+      "category": "분식",
+      "emoji": "🥟",
+      "description": "찐만두!"
+    },
+    {
+      "name": "순대",
+      "category": "분식",
+      "emoji": "🥙",
+      "description": "쫄깃한 순대!"
+    },
+    {
+      "name": "튀김",
+      "category": "분식",
+      "emoji": "🍤",
+      "description": "바삭한 튀김!"
+    },
+    {
+      "name": "포케",
+      "category": "건강식",
+      "emoji": "🥗",
+      "description": "하와이안 포케!"
+    },
+    {
+      "name": "그릭요거트볼",
+      "category": "건강식",
+      "emoji": "🥣",
+      "description": "건강한 요거트볼!"
+    },
+    {
+      "name": "키토김밥",
+      "category": "건강식",
+      "emoji": "🍙",
+      "description": "저탄수화물 김밥!"
+    },
+    {
+      "name": "현미밥정식",
+      "category": "건강식",
+      "emoji": "🍚",
+      "description": "영양 현미밥!"
+    },
+    {
+      "name": "닭가슴살도시락",
+      "category": "건강식",
+      "emoji": "🍱",
+      "description": "단백질 도시락!"
+    },
+    {
+      "name": "연어덮밥",
+      "category": "건강식",
+      "emoji": "🍣",
+      "description": "오메가3 연어덮밥!"
+    },
+    {
+      "name": "아보카도토스트",
+      "category": "건강식",
+      "emoji": "🥑",
+      "description": "영양만점 토스트!"
+    },
+    {
+      "name": "퀴노아샐러드",
+      "category": "건강식",
+      "emoji": "🥗",
+      "description": "슈퍼푸드 샐러드!"
+    },
+    {
+      "name": "스무디볼",
+      "category": "건강식",
+      "emoji": "🥣",
+      "description": "과일 스무디볼!"
+    },
+    {
+      "name": "퀘사디아",
+      "category": "멕시칸",
+      "emoji": "🧀",
+      "description": "치즈 퀘사디아!"
+    },
+    {
+      "name": "나초",
+      "category": "멕시칸",
+      "emoji": "🌶️",
+      "description": "매콤한 나초!"
+    },
+    {
+      "name": "닭갈비",
+      "category": "한식",
+      "emoji": "🍗",
+      "description": "춘천 닭갈비!"
+    },
+    {
+      "name": "낙지볶음",
+      "category": "한식",
+      "emoji": "🐙",
+      "description": "매콤한 낙지볶음!"
+    },
+    {
+      "name": "쭈꾸미볶음",
+      "category": "한식",
+      "emoji": "🐙",
+      "description": "불맛 쭈꾸미!"
+    },
+    {
+      "name": "보쌈정식",
+      "category": "한식",
+      "emoji": "🥙",
+      "description": "수육 보쌈!"
+    },
+    {
+      "name": "족발정식",
+      "category": "한식",
+      "emoji": "🍖",
+      "description": "쫄깃한 족발!"
+    },
+    {
+      "name": "김치볶음밥",
+      "category": "한식",
+      "emoji": "🍚",
+      "description": "매콤한 김치볶음밥!"
+    },
+    {
+      "name": "오징어덮밥",
+      "category": "한식",
+      "emoji": "🦑",
+      "description": "매콤한 오징어덮밥!"
+    },
+    {
+      "name": "장어덮밥",
+      "category": "한식",
+      "emoji": "🐟",
+      "description": "스태미나 장어덮밥!"
+    },
+    {
+      "name": "회덮밥",
+      "category": "한식",
+      "emoji": "🍣",
+      "description": "신선한 회덮밥!"
+    },
+    {
+      "name": "알밥",
+      "category": "한식",
+      "emoji": "🍚",
+      "description": "날치알 알밥!"
+    },
+    {
+      "name": "두부김치",
+      "category": "한식",
+      "emoji": "🥘",
+      "description": "고소한 두부김치!"
+    },
+    {
+      "name": "매운갈비찜",
+      "category": "한식",
+      "emoji": "🥘",
+      "description": "매콤한 갈비찜!"
+    },
+    {
+      "name": "안동찜닭",
+      "category": "한식",
+      "emoji": "🍗",
+      "description": "달콤한 안동찜닭!"
+    },
+    {
+      "name": "묵은지찜",
+      "category": "한식",
+      "emoji": "🥘",
+      "description": "구수한 묵은지찜!"
+    },
+    {
+      "name": "아구찜",
+      "category": "한식",
+      "emoji": "🐟",
+      "description": "콜라겐 아구찜!"
+    },
+    {
+      "name": "해물찜",
+      "category": "한식",
+      "emoji": "🦐",
+      "description": "싱싱한 해물찜!"
+    },
+    {
+      "name": "수육국밥",
+      "category": "한식",
+      "emoji": "🍲",
+      "description": "담백한 수육국밥!"
+    }
+  ],
+  "dinner": [
+    {
+      "name": "삼겹살",
+      "category": "한식",
+      "emoji": "🥓",
+      "description": "고소한 삼겹살 구이!"
+    },
+    {
+      "name": "피자",
+      "category": "양식",
+      "emoji": "🍕",
+      "description": "치즈 듬뿍 피자!"
+    },
+    {
+      "name": "치킨",
+      "category": "야식",
+      "emoji": "🍗",
+      "description": "바삭한 치킨!"
+    },
+    {
+      "name": "스테이크",
+      "category": "양식",
+      "emoji": "🥩",
+      "description": "육즙 가득 스테이크!"
+    },
+    {
+      "name": "회",
+      "category": "일식",
+      "emoji": "🐟",
+      "description": "싱싱한 회!"
+    },
+    {
+      "name": "찜닭",
+      "category": "한식",
+      "emoji": "🍗",
+      "description": "매콤달콤 찜닭!"
+    },
+    {
+      "name": "마라탕",
+      "category": "중식",
+      "emoji": "🍲",
+      "description": "얼얼한 마라탕!"
+    },
+    {
+      "name": "떡볶이",
+      "category": "분식",
+      "emoji": "🍢",
+      "description": "매콤한 떡볶이!"
+    },
+    {
+      "name": "갈비찜",
+      "category": "한식",
+      "emoji": "🥘",
+      "description": "부드러운 갈비찜!"
+    },
+    {
+      "name": "샤브샤브",
+      "category": "일식",
+      "emoji": "🍲",
+      "description": "건강한 샤브샤브!"
+    },
+    {
+      "name": "보쌈",
+      "category": "한식",
+      "emoji": "🥙",
+      "description": "푸짐한 보쌈!"
+    },
+    {
+      "name": "훠궈",
+      "category": "중식",
+      "emoji": "🥘",
+      "description": "매운 훠궈!"
+    },
+    {
+      "name": "감바스",
+      "category": "양식",
+      "emoji": "🦐",
+      "description": "마늘 새우 감바스!"
+    },
+    {
+      "name": "곱창",
+      "category": "한식",
+      "emoji": "🥘",
+      "description": "고소한 곱창 구이!"
+    },
+    {
+      "name": "닭갈비",
+      "category": "한식",
+      "emoji": "🍗",
+      "description": "춘천식 닭갈비!"
+    },
+    {
+      "name": "양꼬치",
+      "category": "중식",
+      "emoji": "🍢",
+      "description": "구운 양꼬치!"
+    },
+    {
+      "name": "스시",
+      "category": "일식",
+      "emoji": "🍱",
+      "description": "오마카세 스시!"
+    },
+    {
+      "name": "갈비탕",
+      "category": "한식",
+      "emoji": "🍲",
+      "description": "진한 갈비탕!"
+    },
+    {
+      "name": "리조또",
+      "category": "양식",
+      "emoji": "🍚",
+      "description": "크리미한 리조또!"
+    },
+    {
+      "name": "쭈꾸미",
+      "category": "한식",
+      "emoji": "🐙",
+      "description": "매콤한 쭈꾸미 볶음!"
+    },
+    {
+      "name": "목살구이",
+      "category": "한식",
+      "emoji": "🥩",
+      "description": "쫄깃한 목살구이!"
+    },
+    {
+      "name": "항정살",
+      "category": "한식",
+      "emoji": "🥩",
+      "description": "특수부위 항정살!"
+    },
+    {
+      "name": "가브리살",
+      "category": "한식",
+      "emoji": "🥩",
+      "description": "부드러운 가브리살!"
+    },
+    {
+      "name": "대창구이",
+      "category": "한식",
+      "emoji": "🥘",
+      "description": "쫄깃한 대창구이!"
+    },
+    {
+      "name": "막창구이",
+      "category": "한식",
+      "emoji": "🥘",
+      "description": "고소한 막창구이!"
+    },
+    {
+      "name": "염통구이",
+      "category": "한식",
+      "emoji": "🥘",
+      "description": "특별한 염통구이!"
+    },
+    {
+      "name": "돼지껍데기",
+      "category": "한식",
+      "emoji": "🥓",
+      "description": "콜라겐 가득 껍데기!"
+    },
+    {
+      "name": "오리구이",
+      "category": "한식",
+      "emoji": "🦆",
+      "description": "담백한 오리구이!"
+    },
+    {
+      "name": "오리주물럭",
+      "category": "한식",
+      "emoji": "🦆",
+      "description": "양념 오리주물럭!"
+    },
+    {
+      "name": "훈제오리",
+      "category": "한식",
+      "emoji": "🦆",
+      "description": "향긋한 훈제오리!"
+    },
+    {
+      "name": "양갈비",
+      "category": "양식",
+      "emoji": "🍖",
+      "description": "부드러운 양갈비!"
+    },
+    {
+      "name": "랍스터",
+      "category": "양식",
+      "emoji": "🦞",
+      "description": "고급 랍스터 요리!"
+    },
+    {
+      "name": "새우구이",
+      "category": "일식",
+      "emoji": "🦐",
+      "description": "통통한 새우구이!"
+    },
+    {
+      "name": "연어구이",
+      "category": "일식",
+      "emoji": "🐟",
+      "description": "오메가3 연어구이!"
+    },
+    {
+      "name": "장어구이",
+      "category": "일식",
+      "emoji": "🐟",
+      "description": "스태미나 장어구이!"
+    },
+    {
+      "name": "참치회",
+      "category": "일식",
+      "emoji": "🍣",
+      "description": "신선한 참치회!"
+    },
+    {
+      "name": "광어회",
+      "category": "일식",
+      "emoji": "🐟",
+      "description": "쫄깃한 광어회!"
+    },
+    {
+      "name": "우럭회",
+      "category": "일식",
+      "emoji": "🐟",
+      "description": "담백한 우럭회!"
+    },
+    {
+      "name": "연어회",
+      "category": "일식",
+      "emoji": "🍣",
+      "description": "부드러운 연어회!"
+    },
+    {
+      "name": "오마카세",
+      "category": "일식",
+      "emoji": "🍱",
+      "description": "셰프 추천 오마카세!"
+    },
+    {
+      "name": "이자카야",
+      "category": "일식",
+      "emoji": "🍶",
+      "description": "일본식 술집 요리!"
+    },
+    {
+      "name": "야키토리",
+      "category": "일식",
+      "emoji": "🍢",
+      "description": "일본식 닭꼬치!"
+    },
+    {
+      "name": "스키야키",
+      "category": "일식",
+      "emoji": "🥘",
+      "description": "일본식 전골!"
+    },
+    {
+      "name": "나베",
+      "category": "일식",
+      "emoji": "🍲",
+      "description": "일본식 냄비요리!"
+    },
+    {
+      "name": "오코노미야키",
+      "category": "일식",
+      "emoji": "🥞",
+      "description": "일본식 부침개!"
+    },
+    {
+      "name": "베이징덕",
+      "category": "중식",
+      "emoji": "🦆",
+      "description": "중국 전통 오리요리!"
+    },
+    {
+      "name": "딤섬",
+      "category": "중식",
+      "emoji": "🥟",
+      "description": "다양한 중국식 만두!"
+    },
+    {
+      "name": "샤오롱바오",
+      "category": "중식",
+      "emoji": "🥟",
+      "description": "육즙 가득 샤오롱바오!"
+    },
+    {
+      "name": "동파육",
+      "category": "중식",
+      "emoji": "🥘",
+      "description": "부드러운 동파육!"
+    },
+    {
+      "name": "유린기",
+      "category": "중식",
+      "emoji": "🍗",
+      "description": "새콤달콤 유린기!"
+    },
+    {
+      "name": "팔보채",
+      "category": "중식",
+      "emoji": "🥘",
+      "description": "8가지 해산물 요리!"
+    },
+    {
+      "name": "난자완스",
+      "category": "중식",
+      "emoji": "🥘",
+      "description": "중국식 미트볼!"
+    },
+    {
+      "name": "마라샹궈",
+      "category": "중식",
+      "emoji": "🥘",
+      "description": "마라 볶음요리!"
+    },
+    {
+      "name": "깐쇼새우",
+      "category": "중식",
+      "emoji": "🦐",
+      "description": "매콤한 깐쇼새우!"
+    },
+    {
+      "name": "크림새우",
+      "category": "중식",
+      "emoji": "🦐",
+      "description": "부드러운 크림새우!"
+    },
+    {
+      "name": "칠리새우",
+      "category": "중식",
+      "emoji": "🦐",
+      "description": "매콤한 칠리새우!"
+    },
+    {
+      "name": "전가복",
+      "category": "중식",
+      "emoji": "🥘",
+      "description": "고급 전복요리!"
+    },
+    {
+      "name": "불도장",
+      "category": "중식",
+      "emoji": "🥘",
+      "description": "해삼 요리!"
+    },
+    {
+      "name": "타이거새우",
+      "category": "아시안",
+      "emoji": "🦐",
+      "description": "왕새우 구이!"
+    },
+    {
+      "name": "팟씨유",
+      "category": "아시안",
+      "emoji": "🦀",
+      "description": "태국식 게요리!"
+    },
+    {
+      "name": "뿌팟퐁커리",
+      "category": "아시안",
+      "emoji": "🦀",
+      "description": "커리 게요리!"
+    },
+    {
+      "name": "라르브",
+      "category": "아시안",
+      "emoji": "🥗",
+      "description": "태국식 샐러드!"
+    },
+    {
+      "name": "솜땀",
+      "category": "아시안",
+      "emoji": "🥗",
+      "description": "파파야 샐러드!"
+    },
+    {
+      "name": "사테",
+      "category": "아시안",
+      "emoji": "🍢",
+      "description": "동남아 꼬치구이!"
+    },
+    {
+      "name": "미고렝",
+      "category": "아시안",
+      "emoji": "🍝",
+      "description": "인도네시아 볶음면!"
+    },
+    {
+      "name": "반쎄오",
+      "category": "아시안",
+      "emoji": "🥞",
+      "description": "베트남식 부침개!"
+    },
+    {
+      "name": "바인쎄오",
+      "category": "아시안",
+      "emoji": "🥞",
+      "description": "베트남 팬케이크!"
+    },
+    {
+      "name": "렌당",
+      "category": "아시안",
+      "emoji": "🥘",
+      "description": "인도네시아 소고기요리!"
+    },
+    {
+      "name": "아도보",
+      "category": "아시안",
+      "emoji": "🍗",
+      "description": "필리핀 닭요리!"
+    },
+    {
+      "name": "비리야니",
+      "category": "인도",
+      "emoji": "🍚",
+      "description": "인도식 볶음밥!"
+    },
+    {
+      "name": "탄두리치킨",
+      "category": "인도",
+      "emoji": "🍗",
+      "description": "인도 전통 치킨!"
+    },
+    {
+      "name": "커리",
+      "category": "인도",
+      "emoji": "🍛",
+      "description": "다양한 인도 커리!"
+    },
+    {
+      "name": "난",
+      "category": "인도",
+      "emoji": "🫓",
+      "description": "인도식 빵과 요리!"
+    },
+    {
+      "name": "사모사",
+      "category": "인도",
+      "emoji": "🥟",
+      "description": "인도식 튀김만두!"
+    },
+    {
+      "name": "파스타 까르보나라",
+      "category": "양식",
+      "emoji": "🍝",
+      "description": "진짜 까르보나라!"
+    },
+    {
+      "name": "파스타 아라비아따",
+      "category": "양식",
+      "emoji": "🍝",
+      "description": "매콤한 토마토 파스타!"
+    },
+    {
+      "name": "파스타 푸타네스카",
+      "category": "양식",
+      "emoji": "🍝",
+      "description": "이탈리아 전통 파스타!"
+    },
+    {
+      "name": "뇨끼",
+      "category": "양식",
+      "emoji": "🥔",
+      "description": "감자 뇨끼!"
+    },
+    {
+      "name": "라자냐",
+      "category": "양식",
+      "emoji": "🥘",
+      "description": "치즈 듬뿍 라자냐!"
+    },
+    {
+      "name": "칼초네",
+      "category": "양식",
+      "emoji": "🥟",
+      "description": "접은 피자!"
+    },
+    {
+      "name": "티본스테이크",
+      "category": "양식",
+      "emoji": "🥩",
+      "description": "T자 뼈 스테이크!"
+    },
+    {
+      "name": "토마호크",
+      "category": "양식",
+      "emoji": "🥩",
+      "description": "도끼 모양 스테이크!"
+    },
+    {
+      "name": "웰링턴",
+      "category": "양식",
+      "emoji": "🥩",
+      "description": "비프 웰링턴!"
+    },
+    {
+      "name": "코코뱅",
+      "category": "양식",
+      "emoji": "🍗",
+      "description": "프랑스식 닭요리!"
+    },
+    {
+      "name": "콩피",
+      "category": "양식",
+      "emoji": "🦆",
+      "description": "오리 콩피!"
+    },
+    {
+      "name": "에스카르고",
+      "category": "양식",
+      "emoji": "🐌",
+      "description": "프랑스 달팽이 요리!"
+    },
+    {
+      "name": "부야베스",
+      "category": "양식",
+      "emoji": "🦞",
+      "description": "프랑스 해물스튜!"
+    },
+    {
+      "name": "파에야",
+      "category": "양식",
+      "emoji": "🥘",
+      "description": "스페인 해물밥!"
+    },
+    {
+      "name": "하몽",
+      "category": "양식",
+      "emoji": "🍖",
+      "description": "스페인 생햄!"
+    },
+    {
+      "name": "초리조",
+      "category": "양식",
+      "emoji": "🌭",
+      "description": "스페인식 소시지!"
+    },
+    {
+      "name": "무사카",
+      "category": "양식",
+      "emoji": "🥘",
+      "description": "그리스 전통요리!"
+    },
+    {
+      "name": "수블라키",
+      "category": "양식",
+      "emoji": "🍢",
+      "description": "그리스식 꼬치!"
+    },
+    {
+      "name": "기로스",
+      "category": "양식",
+      "emoji": "🥙",
+      "description": "그리스식 케밥!"
+    },
+    {
+      "name": "케밥",
+      "category": "중동",
+      "emoji": "🥙",
+      "description": "터키식 케밥!"
+    },
+    {
+      "name": "팔라펠",
+      "category": "중동",
+      "emoji": "🧆",
+      "description": "중동식 콩튀김!"
+    },
+    {
+      "name": "후무스",
+      "category": "중동",
+      "emoji": "🥣",
+      "description": "병아리콩 요리!"
+    },
+    {
+      "name": "바베큐립",
+      "category": "양식",
+      "emoji": "🍖",
+      "description": "바베큐 폭립!"
+    },
+    {
+      "name": "풀드포크",
+      "category": "양식",
+      "emoji": "🥩",
+      "description": "미국식 돼지고기!"
+    },
+    {
+      "name": "브리스킷",
+      "category": "양식",
+      "emoji": "🥩",
+      "description": "텍사스 바베큐!"
+    },
+    {
+      "name": "잠발라야",
+      "category": "양식",
+      "emoji": "🥘",
+      "description": "미국 남부요리!"
+    }
+  ],
+  "snack": [
+    {
+      "name": "떡볶이",
+      "emoji": "🍢",
+      "description": "매콤달콤 떡볶이!"
+    },
+    {
+      "name": "치킨",
+      "emoji": "🍗",
+      "description": "바삭바삭 치킨!"
+    },
+    {
+      "name": "족발",
+      "emoji": "🍖",
+      "description": "쫄깃한 족발!"
+    },
+    {
+      "name": "곱창",
+      "emoji": "🥘",
+      "description": "고소한 곱창!"
+    },
+    {
+      "name": "라면",
+      "emoji": "🍜",
+      "description": "든든한 라면!"
+    },
+    {
+      "name": "피자",
+      "emoji": "🍕",
+      "description": "치즈 가득 피자!"
+    },
+    {
+      "name": "포차",
+      "emoji": "🍻",
+      "description": "포장마차 안주!"
+    },
+    {
+      "name": "타코야끼",
+      "emoji": "🍡",
+      "description": "동글동글 타코야끼!"
+    },
+    {
+      "name": "김밥",
+      "emoji": "🍙",
+      "description": "야식 김밥!"
+    },
+    {
+      "name": "핫도그",
+      "emoji": "🌭",
+      "description": "치즈 핫도그!"
+    },
+    {
+      "name": "만두",
+      "emoji": "🥟",
+      "description": "군만두!"
+    },
+    {
+      "name": "순대",
+      "emoji": "🥙",
+      "description": "순대 한 접시!"
+    },
+    {
+      "name": "오뎅",
+      "emoji": "🍢",
+      "description": "따뜻한 오뎅!"
+    },
+    {
+      "name": "붕어빵",
+      "emoji": "🐟",
+      "description": "팥 붕어빵!"
+    },
+    {
+      "name": "호떡",
+      "emoji": "🥞",
+      "description": "달콤한 호떡!"
+    },
+    {
+      "name": "닭발",
+      "emoji": "🐔",
+      "description": "매콤한 닭발!"
+    },
+    {
+      "name": "오돌뼈",
+      "emoji": "🦴",
+      "description": "쫄깃한 오돌뼈!"
+    },
+    {
+      "name": "닭똥집",
+      "emoji": "🍗",
+      "description": "고소한 닭똥집!"
+    },
+    {
+      "name": "튀김",
+      "emoji": "🍤",
+      "description": "각종 튀김!"
+    },
+    {
+      "name": "어묵",
+      "emoji": "🍢",
+      "description": "따뜻한 어묵!"
+    },
+    {
+      "name": "골뱅이소면",
+      "emoji": "🐚",
+      "description": "매콤한 골뱅이!"
+    },
+    {
+      "name": "번데기",
+      "emoji": "🐛",
+      "description": "고소한 번데기!"
+    },
+    {
+      "name": "육포",
+      "emoji": "🥩",
+      "description": "쫄깃한 육포!"
+    },
+    {
+      "name": "쥐포",
+      "emoji": "🐟",
+      "description": "구운 쥐포!"
+    },
+    {
+      "name": "오징어",
+      "emoji": "🦑",
+      "description": "마른 오징어!"
+    },
+    {
+      "name": "땅콩",
+      "emoji": "🥜",
+      "description": "고소한 땅콩!"
+    },
+    {
+      "name": "새우깡",
+      "emoji": "🦐",
+      "description": "바삭한 새우깡!"
+    },
+    {
+      "name": "양파링",
+      "emoji": "🧅",
+      "description": "달콤한 양파링!"
+    },
+    {
+      "name": "감자칩",
+      "emoji": "🥔",
+      "description": "바삭한 감자칩!"
+    },
+    {
+      "name": "나초칩",
+      "emoji": "🌮",
+      "description": "치즈 나초!"
+    },
+    {
+      "name": "팝콘",
+      "emoji": "🍿",
+      "description": "카라멜 팝콘!"
+    },
+    {
+      "name": "맥주",
+      "emoji": "🍺",
+      "description": "시원한 맥주!"
+    },
+    {
+      "name": "소주",
+      "emoji": "🍶",
+      "description": "깔끔한 소주!"
+    },
+    {
+      "name": "막걸리",
+      "emoji": "🍶",
+      "description": "구수한 막걸리!"
+    },
+    {
+      "name": "와인",
+      "emoji": "🍷",
+      "description": "향긋한 와인!"
+    },
+    {
+      "name": "위스키",
+      "emoji": "🥃",
+      "description": "부드러운 위스키!"
+    },
+    {
+      "name": "치즈",
+      "emoji": "🧀",
+      "description": "다양한 치즈!"
+    },
+    {
+      "name": "과일",
+      "emoji": "🍇",
+      "description": "신선한 과일!"
+    },
+    {
+      "name": "육회",
+      "emoji": "🥩",
+      "description": "신선한 육회!"
+    },
+    {
+      "name": "산낙지",
+      "emoji": "🐙",
+      "description": "살아있는 산낙지!"
+    },
+    {
+      "name": "홍어",
+      "emoji": "🐟",
+      "description": "삭힌 홍어!"
+    },
+    {
+      "name": "전",
+      "emoji": "🥞",
+      "description": "각종 전!"
+    },
+    {
+      "name": "파전",
+      "emoji": "🥞",
+      "description": "파 듬뿍 파전!"
+    },
+    {
+      "name": "김치전",
+      "emoji": "🥞",
+      "description": "김치전!"
+    },
+    {
+      "name": "부추전",
+      "emoji": "🥞",
+      "description": "부추전!"
+    },
+    {
+      "name": "감자전",
+      "emoji": "🥔",
+      "description": "감자전!"
+    },
+    {
+      "name": "두부김치",
+      "emoji": "🥘",
+      "description": "두부김치!"
+    },
+    {
+      "name": "계란찜",
+      "emoji": "🥚",
+      "description": "폭신한 계란찜!"
+    },
+    {
+      "name": "계란말이",
+      "emoji": "🥚",
+      "description": "계란말이!"
+    },
+    {
+      "name": "김치볶음",
+      "emoji": "🥬",
+      "description": "김치볶음!"
+    },
+    {
+      "name": "멸치볶음",
+      "emoji": "🐟",
+      "description": "멸치볶음!"
+    },
+    {
+      "name": "어묵볶음",
+      "emoji": "🍢",
+      "description": "어묵볶음!"
+    },
+    {
+      "name": "떡갈비",
+      "emoji": "🍖",
+      "description": "떡갈비!"
+    },
+    {
+      "name": "치즈스틱",
+      "emoji": "🧀",
+      "description": "치즈스틱!"
+    },
+    {
+      "name": "모짜렐라스틱",
+      "emoji": "🧀",
+      "description": "모짜렐라스틱!"
+    },
+    {
+      "name": "감자튀김",
+      "emoji": "🍟",
+      "description": "감자튀김!"
+    },
+    {
+      "name": "치즈볼",
+      "emoji": "🧀",
+      "description": "치즈볼!"
+    },
+    {
+      "name": "새우튀김",
+      "emoji": "🍤",
+      "description": "새우튀김!"
+    },
+    {
+      "name": "오징어튀김",
+      "emoji": "🦑",
+      "description": "오징어튀김!"
+    },
+    {
+      "name": "고구마튀김",
+      "emoji": "🍠",
+      "description": "고구마튀김!"
+    },
+    {
+      "name": "야채튀김",
+      "emoji": "🥦",
+      "description": "야채튀김!"
+    },
+    {
+      "name": "김말이",
+      "emoji": "🌯",
+      "description": "김말이!"
+    },
+    {
+      "name": "춘권",
+      "emoji": "🥟",
+      "description": "바삭한 춘권!"
+    },
+    {
+      "name": "크로켓",
+      "emoji": "🥔",
+      "description": "크로켓!"
+    },
+    {
+      "name": "감자전",
+      "emoji": "🥔",
+      "description": "감자전!"
+    },
+    {
+      "name": "해물파전",
+      "emoji": "🦐",
+      "description": "해물파전!"
+    },
+    {
+      "name": "굴전",
+      "emoji": "🦪",
+      "description": "굴전!"
+    },
+    {
+      "name": "버섯전",
+      "emoji": "🍄",
+      "description": "버섯전!"
+    },
+    {
+      "name": "호박전",
+      "emoji": "🎃",
+      "description": "호박전!"
+    },
+    {
+      "name": "깻잎전",
+      "emoji": "🌿",
+      "description": "깻잎전!"
+    },
+    {
+      "name": "소세지",
+      "emoji": "🌭",
+      "description": "구운 소세지!"
+    },
+    {
+      "name": "베이컨",
+      "emoji": "🥓",
+      "description": "바삭한 베이컨!"
+    },
+    {
+      "name": "스팸구이",
+      "emoji": "🥫",
+      "description": "스팸구이!"
+    },
+    {
+      "name": "명란젓",
+      "emoji": "🐟",
+      "description": "명란젓!"
+    },
+    {
+      "name": "젓갈",
+      "emoji": "🦐",
+      "description": "각종 젓갈!"
+    },
+    {
+      "name": "장아찌",
+      "emoji": "🥒",
+      "description": "각종 장아찌!"
+    },
+    {
+      "name": "김치",
+      "emoji": "🥬",
+      "description": "각종 김치!"
+    },
+    {
+      "name": "깍두기",
+      "emoji": "🥬",
+      "description": "깍두기!"
+    },
+    {
+      "name": "오이소박이",
+      "emoji": "🥒",
+      "description": "오이소박이!"
+    },
+    {
+      "name": "무말랭이",
+      "emoji": "🥕",
+      "description": "무말랭이!"
+    },
+    {
+      "name": "콘치즈",
+      "emoji": "🌽",
+      "description": "콘치즈!"
+    },
+    {
+      "name": "나쵸",
+      "emoji": "🌮",
+      "description": "나쵸!"
+    },
+    {
+      "name": "퀘사디아",
+      "emoji": "🧀",
+      "description": "퀘사디아!"
+    },
+    {
+      "name": "브리또",
+      "emoji": "🌯",
+      "description": "미니 브리또!"
+    },
+    {
+      "name": "살사딥",
+      "emoji": "🌶️",
+      "description": "살사딥!"
+    },
+    {
+      "name": "과카몰리",
+      "emoji": "🥑",
+      "description": "과카몰리!"
+    },
+    {
+      "name": "브루스케타",
+      "emoji": "🥖",
+      "description": "브루스케타!"
+    },
+    {
+      "name": "카나페",
+      "emoji": "🍞",
+      "description": "카나페!"
+    },
+    {
+      "name": "올리브",
+      "emoji": "🫒",
+      "description": "올리브!"
+    },
+    {
+      "name": "피클",
+      "emoji": "🥒",
+      "description": "피클!"
+    },
+    {
+      "name": "할라피뇨",
+      "emoji": "🌶️",
+      "description": "할라피뇨!"
+    },
+    {
+      "name": "프레즐",
+      "emoji": "🥨",
+      "description": "프레즐!"
+    },
+    {
+      "name": "빵",
+      "emoji": "🥖",
+      "description": "각종 빵!"
+    },
+    {
+      "name": "크래커",
+      "emoji": "🍪",
+      "description": "크래커!"
+    },
+    {
+      "name": "떡",
+      "emoji": "🍡",
+      "description": "각종 떡!"
+    },
+    {
+      "name": "약과",
+      "emoji": "🍪",
+      "description": "약과!"
+    },
+    {
+      "name": "한과",
+      "emoji": "🍪",
+      "description": "전통 한과!"
+    },
+    {
+      "name": "강정",
+      "emoji": "🍯",
+      "description": "강정!"
+    },
+    {
+      "name": "찹쌀도너츠",
+      "emoji": "🍩",
+      "description": "찹쌀도너츠!"
+    },
+    {
+      "name": "꽈배기",
+      "emoji": "🥨",
+      "description": "꽈배기!"
+    }
+  ],
+  "dessert": [
+    {
+      "name": "아이스크림",
+      "emoji": "🍦",
+      "description": "시원달콤 아이스크림!"
+    },
+    {
+      "name": "케이크",
+      "emoji": "🍰",
+      "description": "부드러운 케이크!"
+    },
+    {
+      "name": "마카롱",
+      "emoji": "🍪",
+      "description": "달콤한 마카롱!"
+    },
+    {
+      "name": "와플",
+      "emoji": "🧇",
+      "description": "바삭한 와플!"
+    },
+    {
+      "name": "티라미수",
+      "emoji": "🍮",
+      "description": "부드러운 티라미수!"
+    },
+    {
+      "name": "푸딩",
+      "emoji": "🍮",
+      "description": "말랑한 푸딩!"
+    },
+    {
+      "name": "도넛",
+      "emoji": "🍩",
+      "description": "달콤한 도넛!"
+    },
+    {
+      "name": "크로플",
+      "emoji": "🥐",
+      "description": "바삭한 크로플!"
+    },
+    {
+      "name": "빙수",
+      "emoji": "🍧",
+      "description": "시원한 빙수!"
+    },
+    {
+      "name": "초콜릿",
+      "emoji": "🍫",
+      "description": "달콤한 초콜릿!"
+    },
+    {
+      "name": "쿠키",
+      "emoji": "🍪",
+      "description": "바삭한 쿠키!"
+    },
+    {
+      "name": "젤라또",
+      "emoji": "🍨",
+      "description": "이탈리안 젤라또!"
+    },
+    {
+      "name": "파이",
+      "emoji": "🥧",
+      "description": "애플파이!"
+    },
+    {
+      "name": "브라우니",
+      "emoji": "🟫",
+      "description": "진한 브라우니!"
+    },
+    {
+      "name": "팬케이크",
+      "emoji": "🥞",
+      "description": "폭신한 팬케이크!"
+    },
+    {
+      "name": "프로피테롤",
+      "emoji": "🍮",
+      "description": "초콜릿 슈크림!"
+    },
+    {
+      "name": "에클레어",
+      "emoji": "🥐",
+      "description": "길쭉한 슈크림!"
+    },
+    {
+      "name": "밀푀유",
+      "emoji": "🍰",
+      "description": "천 겹 파이!"
+    },
+    {
+      "name": "타르트",
+      "emoji": "🥧",
+      "description": "과일 타르트!"
+    },
+    {
+      "name": "몽블랑",
+      "emoji": "🌰",
+      "description": "밤 케이크!"
+    },
+    {
+      "name": "수플레",
+      "emoji": "🍮",
+      "description": "폭신한 수플레!"
+    },
+    {
+      "name": "크렘브륄레",
+      "emoji": "🍮",
+      "description": "프랑스 디저트!"
+    },
+    {
+      "name": "판나코타",
+      "emoji": "🍮",
+      "description": "이탈리아 푸딩!"
+    },
+    {
+      "name": "아포가토",
+      "emoji": "☕",
+      "description": "아이스크림 커피!"
+    },
+    {
+      "name": "츄러스",
+      "emoji": "🥖",
+      "description": "시나몬 츄러스!"
+    },
+    {
+      "name": "칸놀리",
+      "emoji": "🥐",
+      "description": "이탈리아 과자!"
+    },
+    {
+      "name": "바클라바",
+      "emoji": "🍯",
+      "description": "터키 디저트!"
+    },
+    {
+      "name": "슈톨렌",
+      "emoji": "🍞",
+      "description": "독일 과일빵!"
+    },
+    {
+      "name": "파블로바",
+      "emoji": "🍰",
+      "description": "머랭 케이크!"
+    },
+    {
+      "name": "트라이플",
+      "emoji": "🍮",
+      "description": "영국 디저트!"
+    },
+    {
+      "name": "플란",
+      "emoji": "🍮",
+      "description": "스페인 푸딩!"
+    },
+    {
+      "name": "치즈케이크",
+      "emoji": "🍰",
+      "description": "뉴욕 치즈케이크!"
+    },
+    {
+      "name": "레드벨벳",
+      "emoji": "🍰",
+      "description": "빨간 케이크!"
+    },
+    {
+      "name": "당근케이크",
+      "emoji": "🥕",
+      "description": "당근 케이크!"
+    },
+    {
+      "name": "바나나브레드",
+      "emoji": "🍌",
+      "description": "바나나 빵!"
+    },
+    {
+      "name": "스콘",
+      "emoji": "🥐",
+      "description": "영국식 스콘!"
+    },
+    {
+      "name": "머핀",
+      "emoji": "🧁",
+      "description": "블루베리 머핀!"
+    },
+    {
+      "name": "컵케이크",
+      "emoji": "🧁",
+      "description": "미니 케이크!"
+    },
+    {
+      "name": "피낭시에",
+      "emoji": "🍪",
+      "description": "프랑스 과자!"
+    },
+    {
+      "name": "마들렌",
+      "emoji": "🍪",
+      "description": "조개 모양 과자!"
+    },
+    {
+      "name": "다쿠아즈",
+      "emoji": "🍪",
+      "description": "아몬드 과자!"
+    },
+    {
+      "name": "브라우니",
+      "emoji": "🟫",
+      "description": "초콜릿 브라우니!"
+    },
+    {
+      "name": "블론디",
+      "emoji": "🟨",
+      "description": "화이트 브라우니!"
+    },
+    {
+      "name": "트러플",
+      "emoji": "🍫",
+      "description": "초콜릿 트러플!"
+    },
+    {
+      "name": "프랄린",
+      "emoji": "🍫",
+      "description": "견과류 초콜릿!"
+    },
+    {
+      "name": "봉봉",
+      "emoji": "🍬",
+      "description": "초콜릿 봉봉!"
+    },
+    {
+      "name": "마시멜로",
+      "emoji": "🍡",
+      "description": "폭신한 마시멜로!"
+    },
+    {
+      "name": "젤리",
+      "emoji": "🍬",
+      "description": "과일 젤리!"
+    },
+    {
+      "name": "구미",
+      "emoji": "🐻",
+      "description": "곰 젤리!"
+    },
+    {
+      "name": "캐러멜",
+      "emoji": "🍬",
+      "description": "버터 캐러멜!"
+    },
+    {
+      "name": "퍼지",
+      "emoji": "🟫",
+      "description": "초콜릿 퍼지!"
+    },
+    {
+      "name": "누가",
+      "emoji": "🍬",
+      "description": "프랑스 누가!"
+    },
+    {
+      "name": "할바",
+      "emoji": "🍯",
+      "description": "중동 디저트!"
+    },
+    {
+      "name": "록키로드",
+      "emoji": "🍫",
+      "description": "초콜릿 디저트!"
+    },
+    {
+      "name": "스모어",
+      "emoji": "🍫",
+      "description": "캠핑 디저트!"
+    },
+    {
+      "name": "플로트",
+      "emoji": "🥤",
+      "description": "아이스크림 음료!"
+    },
+    {
+      "name": "밀크셰이크",
+      "emoji": "🥤",
+      "description": "달콤한 쉐이크!"
+    },
+    {
+      "name": "프라페",
+      "emoji": "☕",
+      "description": "아이스 커피!"
+    },
+    {
+      "name": "스무디",
+      "emoji": "🥤",
+      "description": "과일 스무디!"
+    },
+    {
+      "name": "버블티",
+      "emoji": "🧋",
+      "description": "타피오카 펄!"
+    },
+    {
+      "name": "망고빙수",
+      "emoji": "🥭",
+      "description": "망고 빙수!"
+    },
+    {
+      "name": "팥빙수",
+      "emoji": "🍧",
+      "description": "전통 팥빙수!"
+    },
+    {
+      "name": "인절미빙수",
+      "emoji": "🍧",
+      "description": "고소한 인절미!"
+    },
+    {
+      "name": "초코빙수",
+      "emoji": "🍫",
+      "description": "초콜릿 빙수!"
+    },
+    {
+      "name": "그라니타",
+      "emoji": "🍧",
+      "description": "이탈리아 빙수!"
+    },
+    {
+      "name": "소르베",
+      "emoji": "🍨",
+      "description": "과일 소르베!"
+    },
+    {
+      "name": "파르페",
+      "emoji": "🍨",
+      "description": "층층이 파르페!"
+    },
+    {
+      "name": "선데",
+      "emoji": "🍨",
+      "description": "아이스크림 선데!"
+    },
+    {
+      "name": "바나나스플릿",
+      "emoji": "🍌",
+      "description": "바나나 아이스크림!"
+    },
+    {
+      "name": "프로즌요거트",
+      "emoji": "🍦",
+      "description": "요거트 아이스크림!"
+    },
+    {
+      "name": "셔벗",
+      "emoji": "🍨",
+      "description": "과일 셔벗!"
+    },
+    {
+      "name": "모찌",
+      "emoji": "🍡",
+      "description": "일본 떡!"
+    },
+    {
+      "name": "다이후쿠",
+      "emoji": "🍡",
+      "description": "일본 찹쌀떡!"
+    },
+    {
+      "name": "도라야끼",
+      "emoji": "🥞",
+      "description": "팥 팬케이크!"
+    },
+    {
+      "name": "타이야끼",
+      "emoji": "🐟",
+      "description": "붕어빵!"
+    },
+    {
+      "name": "만쥬",
+      "emoji": "🍡",
+      "description": "일본 만두과자!"
+    },
+    {
+      "name": "양갱",
+      "emoji": "🟫",
+      "description": "팥 젤리!"
+    },
+    {
+      "name": "미타라시당고",
+      "emoji": "🍡",
+      "description": "간장 경단!"
+    },
+    {
+      "name": "앙버터",
+      "emoji": "🥐",
+      "description": "팥 버터빵!"
+    },
+    {
+      "name": "카스테라",
+      "emoji": "🍰",
+      "description": "일본 스펀지케이크!"
+    },
+    {
+      "name": "몬자카",
+      "emoji": "🐟",
+      "description": "일본 와플!"
+    },
+    {
+      "name": "송편",
+      "emoji": "🍡",
+      "description": "한국 전통떡!"
+    },
+    {
+      "name": "약식",
+      "emoji": "🍚",
+      "description": "찹쌀 약밥!"
+    },
+    {
+      "name": "꿀떡",
+      "emoji": "🍯",
+      "description": "꿀 가득 떡!"
+    },
+    {
+      "name": "시루떡",
+      "emoji": "🍰",
+      "description": "켜켜이 시루떡!"
+    },
+    {
+      "name": "절편",
+      "emoji": "🍡",
+      "description": "무지개떡!"
+    },
+    {
+      "name": "백설기",
+      "emoji": "⬜",
+      "description": "하얀 설기떡!"
+    },
+    {
+      "name": "인절미",
+      "emoji": "🟫",
+      "description": "콩고물 인절미!"
+    },
+    {
+      "name": "경단",
+      "emoji": "🍡",
+      "description": "동그란 경단!"
+    },
+    {
+      "name": "찹쌀떡",
+      "emoji": "🍡",
+      "description": "쫄깃한 찹쌀떡!"
+    },
+    {
+      "name": "호떡",
+      "emoji": "🥞",
+      "description": "달콤한 호떡!"
+    },
+    {
+      "name": "전병",
+      "emoji": "🥞",
+      "description": "얇은 전병!"
+    },
+    {
+      "name": "화전",
+      "emoji": "🌸",
+      "description": "꽃 전!"
+    },
+    {
+      "name": "수정과",
+      "emoji": "🥤",
+      "description": "계피 음료!"
+    },
+    {
+      "name": "식혜",
+      "emoji": "🥤",
+      "description": "단 쌀음료!"
+    },
+    {
+      "name": "매실차",
+      "emoji": "🍵",
+      "description": "매실차!"
+    },
+    {
+      "name": "대추차",
+      "emoji": "🍵",
+      "description": "대추차!"
+    },
+    {
+      "name": "유자차",
+      "emoji": "🍵",
+      "description": "유자차!"
+    },
+    {
+      "name": "오미자차",
+      "emoji": "🍵",
+      "description": "오미자차!"
+    },
+    {
+      "name": "모과차",
+      "emoji": "🍵",
+      "description": "모과차!"
+    }
+  ]
+}

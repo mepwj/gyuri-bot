@@ -1,0 +1,96 @@
+{
+  "daily": [
+    {
+      "tip": "물을 자주 마셔요! 하루 8잔 이상!",
+      "category": "health",
+      "emoji": "💧"
+    },
+    {
+      "tip": "10분 일찍 일어나면 하루가 여유로워져요!",
+      "category": "lifestyle",
+      "emoji": "⏰"
+    },
+    {
+      "tip": "스트레칭으로 하루를 시작해보세요!",
+      "category": "health",
+      "emoji": "🧘"
+    },
+    {
+      "tip": "감사 일기를 써보세요. 행복이 두 배!",
+      "category": "mental",
+      "emoji": "📝"
+    },
+    {
+      "tip": "20-20-20 규칙! 20분마다 20초간 20피트(6m) 밖을 봐요!",
+      "category": "health",
+      "emoji": "👀"
+    }
+  ],
+  "productivity": [
+    {
+      "tip": "할 일을 3개로 정리하면 더 집중할 수 있어요!",
+      "category": "work",
+      "emoji": "📋"
+    },
+    {
+      "tip": "포모도로 기법! 25분 집중, 5분 휴식!",
+      "category": "study",
+      "emoji": "🍅"
+    },
+    {
+      "tip": "가장 어려운 일을 아침에 먼저 해결해요!",
+      "category": "work",
+      "emoji": "🌅"
+    },
+    {
+      "tip": "멀티태스킹보다 한 가지에 집중!",
+      "category": "focus",
+      "emoji": "🎯"
+    }
+  ],
+  "developer": [
+    {
+      "tip": "커밋 메시지는 명확하고 간결하게!",
+      "category": "git",
+      "emoji": "📝"
+    },
+    {
+      "tip": "코드를 작성하기 전에 먼저 계획을 세워요!",
+      "category": "planning",
+      "emoji": "📐"
+    },
+    {
+      "tip": "주석은 '왜'를 설명해야 해요, '무엇'이 아니라!",
+      "category": "coding",
+      "emoji": "💬"
+    },
+    {
+      "tip": "정기적으로 백업하는 습관을 가져요!",
+      "category": "safety",
+      "emoji": "💾"
+    },
+    {
+      "tip": "코드 리뷰는 배움의 기회! 적극적으로 참여해요!",
+      "category": "growth",
+      "emoji": "👥"
+    }
+  ],
+  "social": [
+    {
+      "tip": "경청이 최고의 대화 스킬이에요!",
+      "category": "communication",
+      "emoji": "👂"
+    },
+    {
+      "tip": "칭찬은 구체적으로, 비판은 건설적으로!",
+      "category": "feedback",
+      "emoji": "💬"
+    },
+    {
+      "tip": "미소는 최고의 인사말이에요!",
+      "category": "greeting",
+      "emoji": "😊"
+    }
+  ],
+  "categories": ["daily", "productivity", "developer", "social"]
+}
