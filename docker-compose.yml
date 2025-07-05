@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  gyuri-bot:
+    build: .
+    container_name: gyuri-bot
+    restart: unless-stopped
+    environment:
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+      - CLIENT_ID=${CLIENT_ID}
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - bot-network
+
+networks:
+  bot-network:
+    driver: bridge
