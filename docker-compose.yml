@@ -6,6 +6,7 @@ services:
     environment:
       - DISCORD_TOKEN=${DISCORD_TOKEN}
       - CLIENT_ID=${CLIENT_ID}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
     volumes:
       - ./logs:/app/logs
     networks:
