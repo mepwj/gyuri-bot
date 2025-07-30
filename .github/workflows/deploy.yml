@@ -34,6 +34,10 @@ jobs:
           echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> .env
           echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
           
+          # 디버깅: .env 파일 내용 확인 (API 키는 마스킹)
+          echo "=== .env 파일 확인 ==="
+          cat .env | sed 's/\(OPENAI_API_KEY=\).*/\1***MASKED***/'
+          
           # Docker Compose 실행 (새로운 문법 사용)
           docker compose down
           docker compose build --no-cache
