@@ -1,4 +1,5 @@
 const { Events, Collection } = require('discord.js');
+const { generateAIResponse } = require('../utils/aiChat');
 
 module.exports = {
     name: Events.MessageCreate,
@@ -14,6 +15,26 @@ module.exports = {
         }
         
         if (message.content.includes('규리야') && !message.content.startsWith(prefix)) {
+            // "규리야 " 다음에 메시지가 있는지 확인
+            const gyuriPattern = /규리야\s+(.+)/;
+            const match = message.content.match(gyuriPattern);
+            
+            if (match && match[1]) {
+                // AI 응답 생성 시도
+                const aiResponse = await generateAIResponse(match[1], message.author.username);
+                
+                if (aiResponse) {
+                    // 타이핑 표시
+                    await message.channel.sendTyping();
+                    // 약간의 지연 후 응답
+                    setTimeout(() => {
+                        message.reply(aiResponse);
+                    }, 1000);
+                    return;
+                }
+            }
+            
+            // AI 응답이 없거나 "규리야"만 있는 경우 기본 응답
             const responses = [
                 '네? 부르셨나요? 🍊',
                 '저 여기 있어요! ✨',

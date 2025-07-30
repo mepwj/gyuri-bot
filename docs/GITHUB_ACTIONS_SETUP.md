@@ -12,6 +12,9 @@ GitHub 저장소에서 다음 Secrets를 설정해야 합니다:
    - `USERNAME`: SSH 사용자명
    - `PASSWORD`: SSH 비밀번호
    - `PORT`: SSH 포트 (기본값: 22)
+   - `DISCORD_TOKEN`: Discord 봇 토큰
+   - `CLIENT_ID`: Discord 애플리케이션 ID
+   - `OPENAI_API_KEY`: OpenAI API 키 (선택사항, AI 대화 기능용)
 
 ## 2. 서버 초기 설정
 
@@ -42,6 +45,7 @@ nano .env
 # 다음 내용 추가:
 # DISCORD_TOKEN=your_discord_token_here
 # CLIENT_ID=your_client_id_here
+# OPENAI_API_KEY=your_openai_api_key_here (선택사항)
 
 # 4. 첫 실행
 docker-compose up -d
