@@ -18,7 +18,6 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
-        envs: DISCORD_TOKEN,CLIENT_ID,OPENAI_API_KEY
         script: |
           # 프로젝트 디렉토리 확인 및 생성
           if [ ! -d "~/gyuri-bot" ]; then
