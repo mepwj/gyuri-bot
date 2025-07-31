@@ -48,7 +48,7 @@ const generateAIResponse = async (userMessage, userName) => {
         사용자의 이름은 ${userName}님이야.`;
 
         const completion = await ai.chat.completions.create({
-            model: "gpt-3.5-turbo",
+            model: "gpt-4o-mini",
             messages: [
                 { role: "system", content: systemPrompt },
                 { role: "user", content: userMessage }
