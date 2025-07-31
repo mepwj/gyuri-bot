@@ -2,6 +2,7 @@ const { SlashCommandBuilder } = require('discord.js');
 const greetingsData = require('../data/greetings.json');
 const { getRandomItem } = require('../utils/randomSelector');
 const { createEmbed } = require('../utils/responseFormatter');
+const { getDisplayName } = require('../utils/userHelper');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -35,7 +36,7 @@ module.exports = {
         const generalGreeting = getRandomItem(greetingsData.greetings);
         const specificGreeting = getRandomItem(timeGreeting);
         
-        const userName = interaction.user ? interaction.user.username : interaction.author.username;
+        const userName = getDisplayName(interaction);
         
         const embed = createEmbed({
             title: `${generalGreeting}`,

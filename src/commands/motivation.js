@@ -3,6 +3,7 @@ const motivationData = require('../data/motivations.json');
 const { getRandomItem } = require('../utils/randomSelector');
 const { createEmbed } = require('../utils/responseFormatter');
 const { generateMotivation } = require('../utils/llmGenerator');
+const { getDisplayName } = require('../utils/userHelper');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -27,7 +28,7 @@ module.exports = {
     
     async execute(interaction) {
         const isSlashCommand = interaction.isChatInputCommand;
-        const userName = isSlashCommand ? interaction.user.username : interaction.author.username;
+        const userName = getDisplayName(interaction);
         
         let category = 'general';
         let situation = null;

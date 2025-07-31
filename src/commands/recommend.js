@@ -3,6 +3,7 @@ const recommendData = require('../data/recommendations.json');
 const { getRandomItem } = require('../utils/randomSelector');
 const { createEmbed } = require('../utils/responseFormatter');
 const { generateRecommendation } = require('../utils/llmGenerator');
+const { getDisplayName } = require('../utils/userHelper');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -29,7 +30,7 @@ module.exports = {
     async execute(interaction) {
         const isSlashCommand = interaction.isChatInputCommand;
         const userId = isSlashCommand ? interaction.user.id : interaction.author.id;
-        const userName = isSlashCommand ? interaction.user.username : interaction.author.username;
+        const userName = getDisplayName(interaction);
         
         let category = null;
         

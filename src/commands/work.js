@@ -2,6 +2,7 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const workData = require('../data/work.json');
 const { getRandomItem } = require('../utils/randomSelector');
 const { createEmbed } = require('../utils/responseFormatter');
+const { getDisplayName } = require('../utils/userHelper');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -36,7 +37,7 @@ module.exports = {
             }
         }
         
-        const userName = interaction.user ? interaction.user.username : interaction.author.username;
+        const userName = getDisplayName(interaction);
         let responseData, title, emoji;
         
         if (commandType === '야근') {

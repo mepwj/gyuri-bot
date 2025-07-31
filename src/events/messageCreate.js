@@ -1,5 +1,6 @@
 const { Events, Collection } = require('discord.js');
 const { generateAIResponse } = require('../utils/aiChat');
+const { getDisplayName } = require('../utils/userHelper');
 
 module.exports = {
     name: Events.MessageCreate,
@@ -21,7 +22,7 @@ module.exports = {
             
             if (match && match[1]) {
                 // AI 응답 생성 시도
-                const aiResponse = await generateAIResponse(match[1], message.author.username);
+                const aiResponse = await generateAIResponse(match[1], getDisplayName(message));
                 
                 if (aiResponse) {
                     // 타이핑 표시

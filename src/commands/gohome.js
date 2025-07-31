@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { createEmbed } = require('../utils/responseFormatter');
 const { getRandomItem } = require('../utils/randomSelector');
+const { getDisplayName } = require('../utils/userHelper');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -94,7 +95,7 @@ module.exports = {
             }
         }
         
-        const userName = interaction.user ? interaction.user.username : interaction.author.username;
+        const userName = getDisplayName(interaction);
         
         const embed = createEmbed({
             title: title,

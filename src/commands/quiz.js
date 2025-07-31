@@ -2,6 +2,7 @@ const { SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = re
 const quizData = require('../data/quizzes.json');
 const { getRandomItem } = require('../utils/randomSelector');
 const { createEmbed, createSuccessEmbed, createErrorEmbed } = require('../utils/responseFormatter');
+const { getDisplayName } = require('../utils/userHelper');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -37,7 +38,7 @@ module.exports = {
     async execute(interaction) {
         const isSlashCommand = interaction.isChatInputCommand;
         const userId = isSlashCommand ? interaction.user.id : interaction.author.id;
-        const userName = isSlashCommand ? interaction.user.username : interaction.author.username;
+        const userName = getDisplayName(interaction);
         
         let category = null;
         let difficulty = null;
@@ -142,7 +143,7 @@ module.exports = {
             answeredUsers.set(i.user.id, selectedAnswer);
             
             if (selectedAnswer === quiz.answer) {
-                if (!firstCorrect) firstCorrect = i.user.username;
+                if (!firstCorrect) firstCorrect = getDisplayName(i);
                 
                 await i.reply({ 
                     content: '🎉 정답입니다! 축하해요!', 

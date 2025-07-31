@@ -3,6 +3,7 @@ const fortuneData = require('../data/fortunes.json');
 const { getRandomItem } = require('../utils/randomSelector');
 const { createEmbed } = require('../utils/responseFormatter');
 const { generateFortune } = require('../utils/llmGenerator');
+const { getDisplayName } = require('../utils/userHelper');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -28,7 +29,7 @@ module.exports = {
     
     async execute(interaction) {
         const isSlashCommand = interaction.isChatInputCommand;
-        const userName = isSlashCommand ? interaction.user.username : interaction.author.username;
+        const userName = getDisplayName(interaction);
         const userId = isSlashCommand ? interaction.user.id : interaction.author.id;
         
         let category = 'general';
