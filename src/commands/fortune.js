@@ -65,8 +65,7 @@ module.exports = {
             emoji = selectedFortune.emoji;
         }
         
-        const todaySeed = new Date().toDateString() + userId;
-        const fortuneScore = Math.abs(todaySeed.split('').reduce((a, b) => a + b.charCodeAt(0), 0)) % 100;
+        const fortuneScore = Math.floor(Math.random() * 101);
         
         const embed = createEmbed({
             title: `${emoji} ${userName}님의 오늘 운세`,
