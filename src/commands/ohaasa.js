@@ -52,7 +52,7 @@ module.exports = {
                 )),
 
     name: '오하아사',
-    aliases: ['ohaasa', '별자리운세', '일본운세'],
+    aliases: ['ohaasa', '별자리운세', '일본운세', '별자리'],
     description: '일본 오하아사 오늘의 별자리 운세!',
     usage: '[별자리]',
     cooldown: 5,
