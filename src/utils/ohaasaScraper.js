@@ -1,6 +1,6 @@
 const axios = require('axios');
 const cron = require('node-cron');
-const { translateOhaasaFortunes } = require('./llmGenerator');
+const translate = require('google-translate-api-x');
 
 // 일본 별자리 이름을 한국어로 매핑
 const ZODIAC_MAP = {
@@ -159,6 +159,48 @@ function getTodayDateJST() {
 }
 
 /**
+ * Google Translate를 사용하여 일본어 운세를 한국어로 번역
+ */
+async function translateFortunesWithGoogle(fortunes) {
+    try {
+        const translatedFortunes = [];
+
+        for (const fortune of fortunes) {
+            try {
+                // 운세 텍스트 번역
+                const fortuneResult = await translate(fortune.fortune, { from: 'ja', to: 'ko' });
+                const translatedFortune = fortuneResult.text;
+
+                // 럭키 아이템 번역
+                let translatedLuckyItem = fortune.luckyItem;
+                if (fortune.luckyItem && fortune.luckyItem !== '정보 없음') {
+                    const luckyResult = await translate(fortune.luckyItem, { from: 'ja', to: 'ko' });
+                    translatedLuckyItem = luckyResult.text;
+                }
+
+                translatedFortunes.push({
+                    ...fortune,
+                    fortune: translatedFortune,
+                    luckyItem: translatedLuckyItem,
+                    translated: true
+                });
+
+                // API 제한 방지를 위한 딜레이
+                await new Promise(resolve => setTimeout(resolve, 100));
+            } catch (err) {
+                console.error(`[OhaasaScraper] ${fortune.zodiacKo} 번역 실패:`, err.message);
+                translatedFortunes.push({ ...fortune, translated: false });
+            }
+        }
+
+        return translatedFortunes;
+    } catch (error) {
+        console.error('[OhaasaScraper] Google 번역 전체 오류:', error.message);
+        return fortunes.map(f => ({ ...f, translated: false }));
+    }
+}
+
+/**
  * 지수 백오프 딜레이 계산
  */
 function getRetryDelay(attempt) {
@@ -198,8 +240,8 @@ async function fetchAndTranslate() {
 
     console.log('[OhaasaScraper] 오늘 데이터 발견! 번역 시작...');
 
-    // OpenAI로 번역
-    const translatedFortunes = await translateOhaasaFortunes(data.fortunes);
+    // Google Translate로 번역
+    const translatedFortunes = await translateFortunesWithGoogle(data.fortunes);
 
     const translatedData = {
         ...data,

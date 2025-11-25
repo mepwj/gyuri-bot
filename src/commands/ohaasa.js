@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, ActionRowBuilder, StringSelectMenuBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+const { SlashCommandBuilder, ActionRowBuilder, StringSelectMenuBuilder } = require('discord.js');
 const { createEmbed } = require('../utils/responseFormatter');
 const { getDisplayName } = require('../utils/userHelper');
 const { getOhaasaFortune, getZodiacFortune, getAllZodiacs, getCacheStatus } = require('../utils/ohaasaScraper');
@@ -94,13 +94,13 @@ module.exports = {
                 }
 
                 const embed = createSingleFortuneEmbed(fortune, userName);
-                const rows = createInteractionRows(fortune.zodiacKo, false);
+                const rows = createInteractionRows(fortune.zodiacKo);
 
                 const response = isSlashCommand
                     ? await interaction.editReply({ embeds: [embed], components: rows })
                     : await interaction.reply({ embeds: [embed], components: rows, fetchReply: true });
 
-                await setupCollector(interaction, response, userName, fortune);
+                await setupCollector(interaction, response, userName);
                 return;
             }
 
@@ -124,13 +124,13 @@ module.exports = {
             }
 
             const embed = createRankingEmbed(data, userName);
-            const rows = createInteractionRows(null, false);
+            const rows = createInteractionRows(null);
 
             const response = isSlashCommand
                 ? await interaction.editReply({ embeds: [embed], components: rows })
                 : await interaction.reply({ embeds: [embed], components: rows, fetchReply: true });
 
-            await setupCollector(interaction, response, userName, null);
+            await setupCollector(interaction, response, userName);
 
         } catch (error) {
             console.error('[Ohaasa] 명령어 실행 오류:', error);
@@ -184,21 +184,19 @@ function createRankingEmbed(data, userName) {
 /**
  * 특정 별자리 운세 임베드 생성
  */
-function createSingleFortuneEmbed(fortune, userName, showOriginal = false) {
+function createSingleFortuneEmbed(fortune, userName) {
     const emoji = ZODIAC_EMOJI[fortune.zodiacKo] || '⭐';
     const rankEmoji = getRankEmoji(fortune.rank);
 
-    const fortuneText = showOriginal ? fortune.originalFortune : fortune.fortune;
-    const luckyItemText = showOriginal ? fortune.originalLuckyItem : fortune.luckyItem;
-    const langLabel = showOriginal ? '🇯🇵 원문' : '🌐 번역';
+    const langLabel = fortune.translated ? '🌐 한국어 번역' : '🇯🇵 일본어 원문';
 
     return createEmbed({
         title: `${emoji} ${fortune.zodiacKo} 오늘의 운세 ${rankEmoji}`,
-        description: fortuneText,
+        description: fortune.fortune,
         fields: [
             { name: '📅 날짜', value: fortune.date, inline: true },
             { name: '🏆 오늘 순위', value: `${fortune.rank}위 / 12위`, inline: true },
-            { name: '🍀 럭키 아이템', value: luckyItemText, inline: false }
+            { name: '🍀 럭키 아이템', value: fortune.luckyItem, inline: false }
         ],
         footer: {
             text: `${userName}님이 조회 • ${langLabel} • 출처: おはよう朝日です (ABC)`
@@ -208,9 +206,9 @@ function createSingleFortuneEmbed(fortune, userName, showOriginal = false) {
 }
 
 /**
- * 인터랙션 행 생성 (드롭다운 + 버튼)
+ * 인터랙션 행 생성 (드롭다운만)
  */
-function createInteractionRows(currentZodiac = null, showOriginal = false) {
+function createInteractionRows(currentZodiac = null) {
     const zodiacs = getAllZodiacs();
 
     const options = zodiacs.map(z => ({
@@ -227,55 +225,29 @@ function createInteractionRows(currentZodiac = null, showOriginal = false) {
 
     const selectRow = new ActionRowBuilder().addComponents(selectMenu);
 
-    // 원문/번역 토글 버튼 (별자리가 선택된 경우에만)
-    const rows = [selectRow];
-
-    if (currentZodiac) {
-        const toggleButton = new ButtonBuilder()
-            .setCustomId('ohaasa_toggle_lang')
-            .setLabel(showOriginal ? '🌐 한국어 번역 보기' : '🇯🇵 일본어 원문 보기')
-            .setStyle(ButtonStyle.Secondary);
-
-        const buttonRow = new ActionRowBuilder().addComponents(toggleButton);
-        rows.push(buttonRow);
-    }
-
-    return rows;
+    return [selectRow];
 }
 
 /**
  * 인터랙션 컬렉터 설정
  */
-async function setupCollector(interaction, response, userName, initialFortune) {
+async function setupCollector(interaction, response, userName) {
     const userId = interaction.user?.id || interaction.author?.id;
-    let currentFortune = initialFortune;
-    let showOriginal = false;
 
     const collector = response.createMessageComponentCollector({
-        filter: i => (i.customId === 'ohaasa_zodiac_select' || i.customId === 'ohaasa_toggle_lang') && i.user.id === userId,
+        filter: i => i.customId === 'ohaasa_zodiac_select' && i.user.id === userId,
         time: 180000 // 3분
     });
 
     collector.on('collect', async i => {
         try {
-            if (i.customId === 'ohaasa_zodiac_select') {
-                const selectedZodiac = i.values[0];
-                const fortune = await getZodiacFortune(selectedZodiac);
+            const selectedZodiac = i.values[0];
+            const fortune = await getZodiacFortune(selectedZodiac);
 
-                if (fortune) {
-                    currentFortune = fortune;
-                    showOriginal = false;
-                    const embed = createSingleFortuneEmbed(fortune, userName, showOriginal);
-                    const rows = createInteractionRows(selectedZodiac, showOriginal);
-                    await i.update({ embeds: [embed], components: rows });
-                }
-            } else if (i.customId === 'ohaasa_toggle_lang') {
-                if (currentFortune) {
-                    showOriginal = !showOriginal;
-                    const embed = createSingleFortuneEmbed(currentFortune, userName, showOriginal);
-                    const rows = createInteractionRows(currentFortune.zodiacKo, showOriginal);
-                    await i.update({ embeds: [embed], components: rows });
-                }
+            if (fortune) {
+                const embed = createSingleFortuneEmbed(fortune, userName);
+                const rows = createInteractionRows(selectedZodiac);
+                await i.update({ embeds: [embed], components: rows });
             }
         } catch (error) {
             console.error('[Ohaasa] 인터랙션 오류:', error);
