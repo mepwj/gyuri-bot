@@ -22,7 +22,7 @@ module.exports = {
             
             if (match && match[1]) {
                 // AI 응답 생성 시도
-                const aiResponse = await generateAIResponse(match[1], getDisplayName(message));
+                const aiResponse = await generateAIResponse(match[1], getDisplayName(message), message.author.id);
                 
                 if (aiResponse) {
                     // 타이핑 표시

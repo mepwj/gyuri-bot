@@ -18,18 +18,27 @@ client.config = config;
 const loadHandlers = async () => {
     const eventHandler = require('./handlers/eventHandler');
     const commandHandler = require('./handlers/commandHandler');
-    
+
     await eventHandler(client);
     await commandHandler(client);
+};
+
+const startSchedulers = () => {
+    // 오하아사 운세 자동 스크래핑 스케줄러
+    const { startScheduler: startOhaasaScheduler } = require('./utils/ohaasaScraper');
+    startOhaasaScheduler();
 };
 
 const init = async () => {
     try {
         console.log(`🍊 ${config.bot.name} v${config.bot.version} 시작 중...`);
-        
+
         await loadHandlers();
-        
+
         await client.login(process.env.DISCORD_TOKEN);
+
+        // 봇 로그인 후 스케줄러 시작
+        startSchedulers();
     } catch (error) {
         console.error('❌ 봇 시작 중 오류 발생:', error);
         process.exit(1);

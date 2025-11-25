@@ -68,10 +68,97 @@ const generateRecommendation = async (category) => {
     });
 };
 
+/**
+ * 일본어 운세를 한국어로 자연스럽게 번역
+ * @param {string} japaneseText - 일본어 운세 텍스트
+ * @param {string} luckyItem - 일본어 럭키 아이템
+ * @returns {Object} { fortune: string, luckyItem: string }
+ */
+const translateOhaasaFortune = async (japaneseText, luckyItem) => {
+    const prompt = `다음 일본어 별자리 운세를 한국어로 자연스럽게 번역해주세요. 원본의 뉘앙스와 감성을 살려주세요.
+
+운세: ${japaneseText}
+럭키 아이템: ${luckyItem}
+
+JSON 형식으로만 답변해주세요:
+{"fortune": "번역된 운세", "luckyItem": "번역된 럭키 아이템"}`;
+
+    try {
+        const result = await generateWithLLM(prompt, {
+            systemPrompt: '당신은 일본어-한국어 번역 전문가입니다. 별자리 운세의 감성과 뉘앙스를 살려 자연스러운 한국어로 번역합니다. 반드시 JSON 형식으로만 응답하세요.',
+            maxTokens: 200,
+            temperature: 0.3
+        });
+
+        if (result) {
+            // JSON 파싱 시도
+            const jsonMatch = result.match(/\{[\s\S]*\}/);
+            if (jsonMatch) {
+                const parsed = JSON.parse(jsonMatch[0]);
+                return {
+                    fortune: parsed.fortune || japaneseText,
+                    luckyItem: parsed.luckyItem || luckyItem
+                };
+            }
+        }
+    } catch (error) {
+        console.error('[LLM] 번역 오류:', error.message);
+    }
+
+    // 실패 시 원본 반환
+    return { fortune: japaneseText, luckyItem };
+};
+
+/**
+ * 여러 운세를 한번에 번역 (API 호출 최적화)
+ * @param {Array} fortunes - 운세 배열
+ * @returns {Array} 번역된 운세 배열
+ */
+const translateOhaasaFortunes = async (fortunes) => {
+    const fortuneTexts = fortunes.map((f, i) =>
+        `${i + 1}. 운세: ${f.fortune}\n   럭키: ${f.luckyItem}`
+    ).join('\n');
+
+    const prompt = `다음 12개의 일본어 별자리 운세를 한국어로 자연스럽게 번역해주세요.
+
+${fortuneTexts}
+
+JSON 배열 형식으로만 답변해주세요:
+[{"fortune": "번역1", "luckyItem": "럭키1"}, ...]`;
+
+    try {
+        const result = await generateWithLLM(prompt, {
+            systemPrompt: '당신은 일본어-한국어 번역 전문가입니다. 별자리 운세의 감성을 살려 번역합니다. 반드시 JSON 배열 형식으로만 응답하세요.',
+            maxTokens: 1500,
+            temperature: 0.3
+        });
+
+        if (result) {
+            const jsonMatch = result.match(/\[[\s\S]*\]/);
+            if (jsonMatch) {
+                const parsed = JSON.parse(jsonMatch[0]);
+                return fortunes.map((f, i) => ({
+                    ...f,
+                    fortune: parsed[i]?.fortune || f.fortune,
+                    luckyItem: parsed[i]?.luckyItem || f.luckyItem,
+                    translated: true
+                }));
+            }
+        }
+    } catch (error) {
+        console.error('[LLM] 일괄 번역 오류:', error.message);
+    }
+
+    // 실패 시 원본 반환
+    return fortunes.map(f => ({ ...f, translated: false }));
+};
+
 module.exports = {
     generateWithLLM,
     generateFortune,
     generateMotivation,
     generateJoke,
-    generateRecommendation
+    generateRecommendation,
+    translateOhaasaFortune,
+    translateOhaasaFortunes
 };
