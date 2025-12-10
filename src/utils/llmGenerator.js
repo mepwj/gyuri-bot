@@ -115,21 +115,31 @@ JSON 형식으로만 답변해주세요:
  * @returns {Array} 번역된 운세 배열
  */
 const translateOhaasaFortunes = async (fortunes) => {
-    const fortuneTexts = fortunes.map((f, i) =>
-        `${i + 1}. 운세: ${f.fortune}\n   럭키: ${f.luckyItem}`
-    ).join('\n');
+    const fortuneTexts = fortunes.map((f, i) => {
+        let text = `${i + 1}. 운세: ${f.fortune}`;
+        if (f.luckyItem) {
+            text += `\n   럭키: ${f.luckyItem}`;
+        }
+        return text;
+    }).join('\n');
 
-    const prompt = `다음 12개의 일본어 별자리 운세를 한국어로 자연스럽게 번역해주세요.
+    const prompt = `다음 일본어 별자리 운세들을 한국어로 자연스럽게 번역해주세요.
+
+번역 규칙:
+1. 한국인이 자연스럽게 읽을 수 있도록 의역해주세요
+2. 일본 특유의 표현은 한국 정서에 맞게 바꿔주세요
+3. 럭키 아이템이 없는 경우(null) luckyItem을 null로 유지하세요
+4. 간결하고 이해하기 쉽게 번역해주세요
 
 ${fortuneTexts}
 
-JSON 배열 형식으로만 답변해주세요:
-[{"fortune": "번역1", "luckyItem": "럭키1"}, ...]`;
+JSON 배열 형식으로만 답변해주세요. 럭키 아이템이 없으면 null:
+[{"fortune": "번역된 운세", "luckyItem": "번역된 럭키" 또는 null}, ...]`;
 
     try {
         const result = await generateWithLLM(prompt, {
-            systemPrompt: '당신은 일본어-한국어 번역 전문가입니다. 별자리 운세의 감성을 살려 번역합니다. 반드시 JSON 배열 형식으로만 응답하세요.',
-            maxTokens: 1500,
+            systemPrompt: '당신은 일본어-한국어 번역 전문가입니다. 일본 별자리 운세를 한국인이 쉽게 이해할 수 있도록 자연스러운 한국어로 번역합니다. 반드시 JSON 배열 형식으로만 응답하세요.',
+            maxTokens: 2000,
             temperature: 0.3
         });
 
@@ -140,7 +150,7 @@ JSON 배열 형식으로만 답변해주세요:
                 return fortunes.map((f, i) => ({
                     ...f,
                     fortune: parsed[i]?.fortune || f.fortune,
-                    luckyItem: parsed[i]?.luckyItem || f.luckyItem,
+                    luckyItem: parsed[i]?.luckyItem !== undefined ? parsed[i].luckyItem : f.luckyItem,
                     translated: true
                 }));
             }

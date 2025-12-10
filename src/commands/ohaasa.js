@@ -190,14 +190,21 @@ function createSingleFortuneEmbed(fortune, userName) {
 
     const langLabel = fortune.translated ? '🌐 한국어 번역' : '🇯🇵 일본어 원문';
 
+    // 기본 필드
+    const fields = [
+        { name: '📅 날짜', value: fortune.date, inline: true },
+        { name: '🏆 오늘 순위', value: `${fortune.rank}위 / 12위`, inline: true }
+    ];
+
+    // 럭키 아이템이 있을 경우에만 추가
+    if (fortune.luckyItem) {
+        fields.push({ name: '🍀 럭키 아이템', value: fortune.luckyItem, inline: false });
+    }
+
     return createEmbed({
         title: `${emoji} ${fortune.zodiacKo} 오늘의 운세 ${rankEmoji}`,
         description: fortune.fortune,
-        fields: [
-            { name: '📅 날짜', value: fortune.date, inline: true },
-            { name: '🏆 오늘 순위', value: `${fortune.rank}위 / 12위`, inline: true },
-            { name: '🍀 럭키 아이템', value: fortune.luckyItem, inline: false }
-        ],
+        fields: fields,
         footer: {
             text: `${userName}님이 조회 • ${langLabel} • 출처: おはよう朝日です (ABC)`
         },

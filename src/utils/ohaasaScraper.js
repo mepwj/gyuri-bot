@@ -1,6 +1,6 @@
 const axios = require('axios');
 const cron = require('node-cron');
-const translate = require('google-translate-api-x');
+const { translateOhaasaFortunes } = require('./llmGenerator');
 
 // 일본 별자리 이름을 한국어로 매핑
 const ZODIAC_MAP = {
@@ -24,6 +24,24 @@ Object.entries(ZODIAC_MAP).forEach(([jp, data]) => {
     KOREAN_TO_JP[data.ko] = jp;
     KOREAN_TO_JP[data.en] = jp;
 });
+
+/**
+ * HTML 엔티티를 디코딩 (이모지 포함)
+ */
+function decodeHtmlEntities(text) {
+    if (!text) return text;
+    return text
+        // 숫자 HTML 엔티티 (&#x1f4a1; 또는 &#128161;)
+        .replace(/&#x([0-9a-fA-F]+);/g, (_, hex) => String.fromCodePoint(parseInt(hex, 16)))
+        .replace(/&#(\d+);/g, (_, dec) => String.fromCodePoint(parseInt(dec, 10)))
+        // 일반 HTML 엔티티
+        .replace(/&amp;/g, '&')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&quot;/g, '"')
+        .replace(/&apos;/g, "'")
+        .replace(/&nbsp;/g, ' ');
+}
 
 // 캐시 저장소
 let cache = {
@@ -95,15 +113,16 @@ function parseOhaasaHtml(html) {
             .map(line => line.trim())
             .filter(line => line);
 
-        // 럭키 아이템 추출
+        // 럭키 아이템 추출 (HTML 엔티티 디코딩 적용)
         let luckyItem = null;
         const fortuneLines = [];
 
         for (const line of lines) {
-            if (line.startsWith('💡') || line.includes('💡：') || line.includes('💡:')) {
-                luckyItem = line.replace(/💡[：:]?\s*/, '').trim();
+            const decodedLine = decodeHtmlEntities(line);
+            if (decodedLine.startsWith('💡') || decodedLine.includes('💡：') || decodedLine.includes('💡:')) {
+                luckyItem = decodedLine.replace(/💡[：:]?\s*/, '').trim();
             } else {
-                fortuneLines.push(line);
+                fortuneLines.push(decodedLine);
             }
         }
 
@@ -116,9 +135,9 @@ function parseOhaasaHtml(html) {
                 zodiacEn: zodiacData.en,
                 dates: zodiacData.dates,
                 fortune: fortuneLines.join('\n'),
-                luckyItem: luckyItem || '정보 없음',
+                luckyItem: luckyItem || null,
                 originalFortune: fortuneLines.join('\n'),
-                originalLuckyItem: luckyItem || '정보 없음'
+                originalLuckyItem: luckyItem || null
             });
         }
     }
@@ -159,43 +178,16 @@ function getTodayDateJST() {
 }
 
 /**
- * Google Translate를 사용하여 일본어 운세를 한국어로 번역
+ * OpenAI API를 사용하여 일본어 운세를 한국어로 번역
  */
-async function translateFortunesWithGoogle(fortunes) {
+async function translateFortunesWithOpenAI(fortunes) {
     try {
-        const translatedFortunes = [];
-
-        for (const fortune of fortunes) {
-            try {
-                // 운세 텍스트 번역
-                const fortuneResult = await translate(fortune.fortune, { from: 'ja', to: 'ko' });
-                const translatedFortune = fortuneResult.text;
-
-                // 럭키 아이템 번역
-                let translatedLuckyItem = fortune.luckyItem;
-                if (fortune.luckyItem && fortune.luckyItem !== '정보 없음') {
-                    const luckyResult = await translate(fortune.luckyItem, { from: 'ja', to: 'ko' });
-                    translatedLuckyItem = luckyResult.text;
-                }
-
-                translatedFortunes.push({
-                    ...fortune,
-                    fortune: translatedFortune,
-                    luckyItem: translatedLuckyItem,
-                    translated: true
-                });
-
-                // API 제한 방지를 위한 딜레이
-                await new Promise(resolve => setTimeout(resolve, 100));
-            } catch (err) {
-                console.error(`[OhaasaScraper] ${fortune.zodiacKo} 번역 실패:`, err.message);
-                translatedFortunes.push({ ...fortune, translated: false });
-            }
-        }
-
+        console.log('[OhaasaScraper] OpenAI API로 번역 시작...');
+        const translatedFortunes = await translateOhaasaFortunes(fortunes);
+        console.log('[OhaasaScraper] OpenAI 번역 완료');
         return translatedFortunes;
     } catch (error) {
-        console.error('[OhaasaScraper] Google 번역 오류:', error.message);
+        console.error('[OhaasaScraper] OpenAI 번역 오류:', error.message);
         return fortunes.map(f => ({ ...f, translated: false }));
     }
 }
@@ -240,8 +232,8 @@ async function fetchAndTranslate() {
 
     console.log('[OhaasaScraper] 오늘 데이터 발견! 번역 시작...');
 
-    // Google Translate로 번역
-    const translatedFortunes = await translateFortunesWithGoogle(data.fortunes);
+    // OpenAI API로 번역
+    const translatedFortunes = await translateFortunesWithOpenAI(data.fortunes);
 
     const translatedData = {
         ...data,
