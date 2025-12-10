@@ -2,10 +2,15 @@ const axios = require('axios');
 const config = require('../../config/config.json');
 
 const generateWithLLM = async (prompt, options = {}) => {
-    if (!config.features.enableLLM || !process.env.OPENAI_API_KEY) {
+    if (!config.features.enableLLM) {
+        console.log('[LLM] enableLLM이 false입니다');
         return null;
     }
-    
+    if (!process.env.OPENAI_API_KEY) {
+        console.log('[LLM] OPENAI_API_KEY가 설정되지 않았습니다');
+        return null;
+    }
+
     try {
         const response = await axios.post('https://api.openai.com/v1/chat/completions', {
             model: options.model || 'gpt-3.5-turbo',
@@ -28,10 +33,10 @@ const generateWithLLM = async (prompt, options = {}) => {
                 'Content-Type': 'application/json'
             }
         });
-        
+
         return response.data.choices[0].message.content;
     } catch (error) {
-        console.error('LLM 생성 오류:', error);
+        console.error('[LLM] API 호출 오류:', error.response?.data || error.message);
         return null;
     }
 };
@@ -137,15 +142,19 @@ JSON 배열 형식으로만 답변해주세요. 럭키 아이템이 없으면 nu
 [{"fortune": "번역된 운세", "luckyItem": "번역된 럭키" 또는 null}, ...]`;
 
     try {
+        console.log('[LLM] 번역 요청 시작...');
         const result = await generateWithLLM(prompt, {
             systemPrompt: '당신은 일본어-한국어 번역 전문가입니다. 일본 별자리 운세를 한국인이 쉽게 이해할 수 있도록 자연스러운 한국어로 번역합니다. 반드시 JSON 배열 형식으로만 응답하세요.',
             maxTokens: 2000,
             temperature: 0.3
         });
 
+        console.log('[LLM] API 응답:', result ? `${result.substring(0, 200)}...` : 'null');
+
         if (result) {
             const jsonMatch = result.match(/\[[\s\S]*\]/);
             if (jsonMatch) {
+                console.log('[LLM] JSON 파싱 성공');
                 const parsed = JSON.parse(jsonMatch[0]);
                 return fortunes.map((f, i) => ({
                     ...f,
@@ -153,13 +162,19 @@ JSON 배열 형식으로만 답변해주세요. 럭키 아이템이 없으면 nu
                     luckyItem: parsed[i]?.luckyItem !== undefined ? parsed[i].luckyItem : f.luckyItem,
                     translated: true
                 }));
+            } else {
+                console.error('[LLM] JSON 배열 매칭 실패. 응답:', result);
             }
+        } else {
+            console.error('[LLM] API 응답이 null입니다');
         }
     } catch (error) {
         console.error('[LLM] 일괄 번역 오류:', error.message);
+        console.error('[LLM] 오류 상세:', error);
     }
 
     // 실패 시 원본 반환
+    console.log('[LLM] 번역 실패, 원본 반환');
     return fortunes.map(f => ({ ...f, translated: false }));
 };
 
