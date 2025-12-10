@@ -30,7 +30,7 @@
     }
   },
   "features": {
-    "enableLLM": false,
+    "enableLLM": true,
     "enableAutoResponse": true,
     "enableLogging": true,
     "enableCooldown": true
