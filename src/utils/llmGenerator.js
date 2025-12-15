@@ -42,9 +42,9 @@ const generateWithLLM = async (prompt, options = {}) => {
 };
 
 const generateFortune = async (userName) => {
-    const prompt = `${userName}님의 오늘 운세를 귀엽고 긍정적으로 3줄로 알려주세요. 이모지를 포함해주세요.`;
+    const prompt = `${userName}님의 오늘 운세를 귀엽고 긍정적으로 3줄로 알려주세요. 각 줄은 반드시 줄바꿈으로 구분하고, 이모지를 포함해주세요.`;
     return await generateWithLLM(prompt, {
-        systemPrompt: '당신은 긍정적이고 재미있는 운세를 알려주는 규리봇입니다.',
+        systemPrompt: '당신은 긍정적이고 재미있는 운세를 알려주는 규리봇입니다. 항상 각 문장을 줄바꿈(\\n)으로 구분해서 답변합니다.',
         maxTokens: 300
     });
 };
