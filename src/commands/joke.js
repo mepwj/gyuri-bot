@@ -2,7 +2,6 @@ const { SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = re
 const jokeData = require('../data/jokes.json');
 const { getRandomItem } = require('../utils/randomSelector');
 const { createEmbed } = require('../utils/responseFormatter');
-const { generateJoke } = require('../utils/llmGenerator');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -44,31 +43,20 @@ module.exports = {
         
         let joke;
         let isOneLiner = false;
-        
-        const llmJoke = await generateJoke(category);
-        
-        if (llmJoke && interaction.client.config.features.enableLLM) {
+
+        if (Math.random() < 0.3) {
             joke = {
-                setup: llmJoke,
+                setup: getRandomItem(jokeData.oneLiner),
                 punchline: '',
-                category: category || 'general'
+                category: 'general'
             };
             isOneLiner = true;
         } else {
-            if (Math.random() < 0.3) {
-                joke = {
-                    setup: getRandomItem(jokeData.oneLiner),
-                    punchline: '',
-                    category: 'general'
-                };
-                isOneLiner = true;
-            } else {
-                let jokes = jokeData.jokes;
-                if (category) {
-                    jokes = jokes.filter(j => j.category === category);
-                }
-                joke = getRandomItem(jokes);
+            let jokes = jokeData.jokes;
+            if (category) {
+                jokes = jokes.filter(j => j.category === category);
             }
+            joke = getRandomItem(jokes);
         }
         
         const categoryEmoji = {

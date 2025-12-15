@@ -2,7 +2,6 @@ const { SlashCommandBuilder } = require('discord.js');
 const motivationData = require('../data/motivations.json');
 const { getRandomItem } = require('../utils/randomSelector');
 const { createEmbed } = require('../utils/responseFormatter');
-const { generateMotivation } = require('../utils/llmGenerator');
 const { getDisplayName } = require('../utils/userHelper');
 
 module.exports = {
@@ -48,15 +47,8 @@ module.exports = {
             }
         }
         
-        let message;
-        const llmMessage = await generateMotivation(situation);
-        
-        if (llmMessage && interaction.client.config.features.enableLLM) {
-            message = llmMessage;
-        } else {
-            const messages = motivationData[category] || motivationData.general;
-            message = getRandomItem(messages);
-        }
+        const messages = motivationData[category] || motivationData.general;
+        const message = getRandomItem(messages);
         
         const categoryEmoji = {
             'general': '💪',

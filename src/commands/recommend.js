@@ -2,7 +2,6 @@ const { SlashCommandBuilder, ActionRowBuilder, StringSelectMenuBuilder } = requi
 const recommendData = require('../data/recommendations.json');
 const { getRandomItem } = require('../utils/randomSelector');
 const { createEmbed } = require('../utils/responseFormatter');
-const { generateRecommendation } = require('../utils/llmGenerator');
 const { getDisplayName } = require('../utils/userHelper');
 
 module.exports = {
@@ -54,9 +53,7 @@ module.exports = {
         
         const activities = recommendData.activities[category];
         const activity = getRandomItem(activities);
-        
-        const llmRecommendation = await generateRecommendation(category);
-        
+
         const categoryInfo = {
             'indoor': { name: '실내 활동', emoji: '🏠' },
             'outdoor': { name: '실외 활동', emoji: '🌳' },
@@ -74,16 +71,8 @@ module.exports = {
                 { name: '⏱️ 예상 시간', value: activity.duration, inline: true },
                 { name: '📍 카테고리', value: info.name, inline: true }
             ],
-            footer: { text: llmRecommendation ? '규리가 특별히 추천해요! 🍊' : '즐거운 시간 보내세요! 🍊' }
+            footer: { text: '즐거운 시간 보내세요! 🍊' }
         });
-        
-        if (llmRecommendation && interaction.client.config.features.enableLLM) {
-            embed.addFields({ 
-                name: '💡 규리의 추가 추천', 
-                value: llmRecommendation, 
-                inline: false 
-            });
-        }
         
         const selectMenu = new StringSelectMenuBuilder()
             .setCustomId('recommend_category')

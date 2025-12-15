@@ -2,7 +2,6 @@ const { SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = re
 const fortuneData = require('../data/fortunes.json');
 const { getRandomItem } = require('../utils/randomSelector');
 const { createEmbed } = require('../utils/responseFormatter');
-const { generateFortune } = require('../utils/llmGenerator');
 const { getDisplayName } = require('../utils/userHelper');
 
 module.exports = {
@@ -43,27 +42,13 @@ module.exports = {
             }
         }
         
-        let fortune;
-        let luckyItem;
-        let luckyNumber;
-        let emoji;
-        
-        const llmFortune = await generateFortune(userName);
-        
-        if (llmFortune && interaction.client.config.features.enableLLM) {
-            fortune = llmFortune;
-            emoji = '🔮';
-            luckyItem = getRandomItem(['행운의 부적', '네잎클로버', '별똥별', '무지개']);
-            luckyNumber = Math.floor(Math.random() * 100) + 1;
-        } else {
-            const fortuneCategory = fortuneData[category] || fortuneData.general;
-            const selectedFortune = getRandomItem(fortuneCategory);
-            
-            fortune = selectedFortune.fortune;
-            luckyItem = selectedFortune.lucky_item;
-            luckyNumber = selectedFortune.lucky_number || Math.floor(Math.random() * 10) + 1;
-            emoji = selectedFortune.emoji;
-        }
+        const fortuneCategory = fortuneData[category] || fortuneData.general;
+        const selectedFortune = getRandomItem(fortuneCategory);
+
+        const fortune = selectedFortune.fortune;
+        const luckyItem = selectedFortune.lucky_item;
+        const luckyNumber = selectedFortune.lucky_number || Math.floor(Math.random() * 10) + 1;
+        const emoji = selectedFortune.emoji;
         
         const fortuneScore = Math.floor(Math.random() * 101);
         
