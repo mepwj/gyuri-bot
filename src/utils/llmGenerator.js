@@ -13,7 +13,7 @@ const generateWithLLM = async (prompt, options = {}) => {
 
     try {
         const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-            model: options.model || 'gpt-3.5-turbo',
+            model: options.model || 'gpt-4o-mini',
             messages: [
                 {
                     role: 'system',
