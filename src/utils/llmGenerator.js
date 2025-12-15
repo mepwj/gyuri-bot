@@ -42,11 +42,20 @@ const generateWithLLM = async (prompt, options = {}) => {
 };
 
 const generateFortune = async (userName) => {
-    const prompt = `${userName}님의 오늘 운세를 귀엽고 긍정적으로 3줄로 알려주세요. 각 줄은 반드시 줄바꿈으로 구분하고, 이모지를 포함해주세요.`;
-    return await generateWithLLM(prompt, {
-        systemPrompt: '당신은 긍정적이고 재미있는 운세를 알려주는 규리봇입니다. 항상 각 문장을 줄바꿈(\\n)으로 구분해서 답변합니다.',
+    const prompt = `${userName}님의 오늘 운세를 귀엽고 긍정적으로 3문장으로 알려주세요. 이모지를 포함해주세요.`;
+    const result = await generateWithLLM(prompt, {
+        systemPrompt: '당신은 긍정적이고 재미있는 운세를 알려주는 규리봇입니다.',
         maxTokens: 300
     });
+
+    if (result) {
+        // 문장 끝(. ! ?)에 이모지가 있으면 이모지 뒤에, 없으면 문장부호 뒤에 줄바꿈 추가
+        return result
+            .replace(/([.!?])\s*([^\s])/g, '$1\n$2')
+            .replace(/([.!?])(\s*)$/g, '$1')
+            .trim();
+    }
+    return result;
 };
 
 const generateMotivation = async (context) => {
