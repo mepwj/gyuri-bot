@@ -45,7 +45,7 @@ const generateFortune = async (userName) => {
     const prompt = `${userName}님의 오늘 운세를 귀엽고 긍정적으로 3줄로 알려주세요. 이모지를 포함해주세요.`;
     return await generateWithLLM(prompt, {
         systemPrompt: '당신은 긍정적이고 재미있는 운세를 알려주는 규리봇입니다.',
-        maxTokens: 100
+        maxTokens: 300
     });
 };
 
