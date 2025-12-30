@@ -25,16 +25,24 @@ Object.entries(ZODIAC_MAP).forEach(([jp, data]) => {
     KOREAN_TO_JP[data.en] = jp;
 });
 
+// 데이터 소스 정의 (순서대로 시도, 첫 번째 성공 시 사용)
+// ABC TV는 JavaScript 동적 렌더링이라 axios로 불가능, TV 아사히 우선 사용
+const DATA_SOURCES = [
+    {
+        name: 'TV_ASAHI',
+        url: 'https://www.tv-asahi.co.jp/goodmorning/uranai/',
+        parser: parseTvAsahiHtml
+    }
+];
+
 /**
  * HTML 엔티티를 디코딩 (이모지 포함)
  */
 function decodeHtmlEntities(text) {
     if (!text) return text;
     return text
-        // 숫자 HTML 엔티티 (&#x1f4a1; 또는 &#128161;)
         .replace(/&#x([0-9a-fA-F]+);/g, (_, hex) => String.fromCodePoint(parseInt(hex, 16)))
         .replace(/&#(\d+);/g, (_, dec) => String.fromCodePoint(parseInt(dec, 10)))
-        // 일반 HTML 엔티티
         .replace(/&amp;/g, '&')
         .replace(/&lt;/g, '<')
         .replace(/&gt;/g, '>')
@@ -48,82 +56,54 @@ let cache = {
     data: null,
     date: null,
     fetchedAt: null,
-    translated: false
+    translated: false,
+    source: null
 };
 
 // 스케줄러 상태
 let schedulerTask = null;
 let isSchedulerRunning = false;
-let retryCount = 0;
-const MAX_RETRIES = 10;
-const BASE_RETRY_DELAY = 5 * 60 * 1000; // 5분
 
 /**
- * himantorend.com에서 오하아사 운세 데이터를 스크래핑
+ * ABC TV (오사카) 사이트 HTML 파싱
+ * URL: https://www.asahi.co.jp/ohaasa/week/horoscope/index.html
  */
-async function fetchOhaasaFortune() {
-    const url = 'https://himantorend.com/ohayouasahidesuseizauranai8/';
-
-    try {
-        const response = await axios.get(url, {
-            headers: {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-                'Accept-Language': 'ja,ko;q=0.9,en;q=0.8',
-                'Cache-Control': 'no-cache'
-            },
-            timeout: 15000
-        });
-
-        const html = response.data;
-        return parseOhaasaHtml(html);
-    } catch (error) {
-        console.error('[OhaasaScraper] 스크래핑 실패:', error.message);
-        return null;
-    }
-}
-
-/**
- * HTML을 파싱하여 운세 데이터 추출
- */
-function parseOhaasaHtml(html) {
+function parseAbcTvHtml(html) {
     const fortunes = [];
     let currentDate = null;
 
-    // 날짜 추출 (예: "11月25日" -> "11/25")
-    const dateMatch = html.match(/<h3><span[^>]*>(\d+)月(\d+)日<\/span><\/h3>/);
+    // 날짜 추출: <h4><span>12</span>月<span>26</span>日
+    const dateMatch = html.match(/<h4[^>]*><span>(\d+)<\/span>月<span>(\d+)<\/span>日/);
     if (dateMatch) {
         currentDate = `${dateMatch[1]}/${dateMatch[2]}`;
     }
 
     // 각 별자리 운세 추출
-    const fortunePattern = /<h5><span[^>]*>([０-９0-9]+)位\s*([ぁ-んァ-ン一-龥]+座)\([^)]+\)<\/span><\/h5>\s*<p><span[^>]*>([\s\S]*?)<\/span><\/p>/g;
+    // <li class="rank1 libra">
+    //   <dl>
+    //     <dt><span class="horo_rank">1</span><sapn class="horo_name">てんびん座</sapn></dt>
+    //     <dd class="horo_txt">운세내용\t럭키아이템</dd>
+    //   </dl>
+    // </li>
+    const fortunePattern = /<li[^>]*class="[^"]*(?:rank)?(\d+)?[^"]*\s+(\w+)[^"]*"[^>]*>\s*<dl>\s*<dt><span[^>]*class="horo_rank"[^>]*>(\d+)<\/span><sapn[^>]*class="horo_name[^"]*"[^>]*>([^<]+)<\/sapn><\/dt>\s*<dd[^>]*class="horo_txt"[^>]*>([^<]+)<\/dd>/gi;
 
     let match;
     while ((match = fortunePattern.exec(html)) !== null) {
-        const rank = convertJapaneseNumber(match[1]);
-        const zodiacJp = match[2];
-        const contentRaw = match[3];
+        const rank = parseInt(match[3], 10);
+        const zodiacJp = match[4].trim();
+        const contentRaw = decodeHtmlEntities(match[5]);
 
-        // 운세 내용 파싱
-        const lines = contentRaw
-            .replace(/<br\s*\/?>/gi, '\n')
-            .replace(/<[^>]+>/g, '')
-            .split('\n')
-            .map(line => line.trim())
-            .filter(line => line);
+        // 탭으로 구분된 내용 파싱 (마지막이 럭키아이템)
+        const parts = contentRaw.split('\t').map(p => p.trim()).filter(p => p);
 
-        // 럭키 아이템 추출 (HTML 엔티티 디코딩 적용)
         let luckyItem = null;
-        const fortuneLines = [];
+        let fortuneLines = [];
 
-        for (const line of lines) {
-            const decodedLine = decodeHtmlEntities(line);
-            if (decodedLine.startsWith('💡') || decodedLine.includes('💡：') || decodedLine.includes('💡:')) {
-                luckyItem = decodedLine.replace(/💡[：:]?\s*/, '').trim();
-            } else {
-                fortuneLines.push(decodedLine);
-            }
+        if (parts.length > 1) {
+            luckyItem = parts[parts.length - 1];
+            fortuneLines = parts.slice(0, -1);
+        } else {
+            fortuneLines = parts;
         }
 
         const zodiacData = ZODIAC_MAP[zodiacJp];
@@ -134,10 +114,71 @@ function parseOhaasaHtml(html) {
                 zodiacKo: zodiacData.ko,
                 zodiacEn: zodiacData.en,
                 dates: zodiacData.dates,
-                fortune: fortuneLines.join('\n'),
-                luckyItem: luckyItem || null,
-                originalFortune: fortuneLines.join('\n'),
-                originalLuckyItem: luckyItem || null
+                fortune: fortuneLines.join(' '),
+                luckyItem: luckyItem,
+                originalFortune: fortuneLines.join(' '),
+                originalLuckyItem: luckyItem
+            });
+        }
+    }
+
+    fortunes.sort((a, b) => a.rank - b.rank);
+
+    return {
+        date: currentDate,
+        fortunes,
+        fetchedAt: new Date().toISOString(),
+        source: 'ABC_TV'
+    };
+}
+
+/**
+ * TV 아사히 (도쿄) 사이트 HTML 파싱
+ * URL: https://www.tv-asahi.co.jp/goodmorning/uranai/
+ */
+function parseTvAsahiHtml(html) {
+    const fortunes = [];
+    let currentDate = null;
+
+    // 날짜 추출: 12月30日（Tue）の占い
+    const dateMatch = html.match(/(\d+)月(\d+)日[（\(][^）\)]+[）\)]の占い/);
+    if (dateMatch) {
+        currentDate = `${dateMatch[1]}/${dateMatch[2]}`;
+    }
+
+    // 순위 추출 (이미지 기반: rank-1.png, rank-2.png 등)
+    const rankings = {};
+    const rankPattern = /<a[^>]*data-label="(\w+)"[^>]*>[\s\S]*?<img[^>]*src="images\/rank-(\d+)\.png"[\s\S]*?<span>([^<]+)<\/span>/gi;
+    let rankMatch;
+    while ((rankMatch = rankPattern.exec(html)) !== null) {
+        rankings[rankMatch[3].trim()] = parseInt(rankMatch[2]);
+    }
+
+    // 운세 섹션 추출 (seiza-box 구조)
+    const sectionPattern = /<div[^>]*class="seiza-box"[^>]*id="(\w+)"[^>]*>[\s\S]*?<p[^>]*class="seiza-txt"[^>]*>([^<]+)<span[^>]*class="period"[^>]*>\(([^)]+)\)<\/span><\/p>[\s\S]*?<p[^>]*class="read"[^>]*>([^<]+)<\/p>[\s\S]*?ラッキーカラー<\/span>[：:]([^<]+)<br[\s\S]*?幸運のカギ<\/span>[：:]([^<\n]+)/gi;
+
+    let sectionMatch;
+    while ((sectionMatch = sectionPattern.exec(html)) !== null) {
+        const zodiacJp = sectionMatch[2].trim();
+        const fortune = decodeHtmlEntities(sectionMatch[4].trim());
+        const luckyColor = sectionMatch[5].trim();
+        const luckyKey = sectionMatch[6].trim();
+
+        // 럭키아이템 조합
+        const luckyItem = `럭키컬러: ${luckyColor} / 행운의 열쇠: ${luckyKey}`;
+
+        const zodiacData = ZODIAC_MAP[zodiacJp];
+        if (zodiacData) {
+            fortunes.push({
+                rank: rankings[zodiacJp] || fortunes.length + 1,
+                zodiacJp,
+                zodiacKo: zodiacData.ko,
+                zodiacEn: zodiacData.en,
+                dates: zodiacData.dates,
+                fortune,
+                luckyItem,
+                originalFortune: fortune,
+                originalLuckyItem: `ラッキーカラー: ${luckyColor} / 幸運のカギ: ${luckyKey}`
             });
         }
     }
@@ -148,7 +189,8 @@ function parseOhaasaHtml(html) {
     return {
         date: currentDate,
         fortunes,
-        fetchedAt: new Date().toISOString()
+        fetchedAt: new Date().toISOString(),
+        source: 'TV_ASAHI'
     };
 }
 
@@ -169,12 +211,60 @@ function convertJapaneseNumber(str) {
  */
 function getTodayDateJST() {
     const now = new Date();
-    // JST = UTC + 9
     const jstOffset = 9 * 60 * 60 * 1000;
     const jstDate = new Date(now.getTime() + jstOffset);
     const month = jstDate.getUTCMonth() + 1;
     const day = jstDate.getUTCDate();
     return `${month}/${day}`;
+}
+
+/**
+ * 데이터 소스에서 HTML 가져오기
+ */
+async function fetchFromSource(source) {
+    try {
+        console.log(`[OhaasaScraper] ${source.name}에서 데이터 가져오기 시도...`);
+
+        const response = await axios.get(source.url, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                'Accept-Language': 'ja,ko;q=0.9,en;q=0.8',
+                'Cache-Control': 'no-cache'
+            },
+            timeout: 15000
+        });
+
+        const html = response.data;
+        return source.parser(html);
+    } catch (error) {
+        console.error(`[OhaasaScraper] ${source.name} 스크래핑 실패:`, error.message);
+        return null;
+    }
+}
+
+/**
+ * 모든 소스를 번갈아 시도하여 오늘 데이터 가져오기
+ */
+async function fetchOhaasaFortune() {
+    const todayJST = getTodayDateJST();
+
+    for (const source of DATA_SOURCES) {
+        const data = await fetchFromSource(source);
+
+        if (data && data.fortunes.length > 0) {
+            console.log(`[OhaasaScraper] ${source.name}: 날짜=${data.date}, 오늘=${todayJST}`);
+
+            if (data.date === todayJST) {
+                console.log(`[OhaasaScraper] ✅ ${source.name}에서 오늘 데이터 발견!`);
+                return data;
+            } else {
+                console.log(`[OhaasaScraper] ${source.name}: 아직 오늘 데이터 아님`);
+            }
+        }
+    }
+
+    return null;
 }
 
 /**
@@ -193,18 +283,7 @@ async function translateFortunesWithOpenAI(fortunes) {
 }
 
 /**
- * 지수 백오프 딜레이 계산
- */
-function getRetryDelay(attempt) {
-    // 5분, 10분, 20분, 40분... 최대 1시간
-    const delay = Math.min(BASE_RETRY_DELAY * Math.pow(2, attempt), 60 * 60 * 1000);
-    // 약간의 랜덤성 추가 (±20%)
-    const jitter = delay * (0.8 + Math.random() * 0.4);
-    return Math.floor(jitter);
-}
-
-/**
- * 운세 데이터 가져오기 및 번역 (자동 재시도)
+ * 운세 데이터 가져오기 및 번역
  */
 async function fetchAndTranslate() {
     const todayJST = getTodayDateJST();
@@ -220,17 +299,11 @@ async function fetchAndTranslate() {
     const data = await fetchOhaasaFortune();
 
     if (!data || data.fortunes.length === 0) {
-        console.log('[OhaasaScraper] 데이터 없음');
+        console.log('[OhaasaScraper] 오늘 데이터 없음 (모든 소스 확인 완료)');
         return null;
     }
 
-    // 날짜 확인
-    if (data.date !== todayJST) {
-        console.log(`[OhaasaScraper] 아직 오늘 데이터 아님 (사이트: ${data.date}, 오늘: ${todayJST})`);
-        return null;
-    }
-
-    console.log('[OhaasaScraper] 오늘 데이터 발견! 번역 시작...');
+    console.log('[OhaasaScraper] 번역 시작...');
 
     // OpenAI API로 번역
     const translatedFortunes = await translateFortunesWithOpenAI(data.fortunes);
@@ -246,47 +319,39 @@ async function fetchAndTranslate() {
         data: translatedData,
         date: data.date,
         fetchedAt: new Date().toISOString(),
-        translated: translatedData.translated
+        translated: translatedData.translated,
+        source: data.source
     };
 
-    console.log(`[OhaasaScraper] 데이터 캐시 완료 (번역: ${translatedData.translated ? '성공' : '실패'})`);
+    console.log(`[OhaasaScraper] 데이터 캐시 완료 (소스: ${data.source}, 번역: ${translatedData.translated ? '성공' : '실패'})`);
 
     return translatedData;
 }
 
 /**
- * 재시도 로직이 포함된 자동 업데이트
+ * 자동 업데이트 (재시도 없이 단순 시도)
  */
-async function autoUpdateWithRetry() {
+async function autoUpdate() {
     const todayJST = getTodayDateJST();
 
     // 이미 오늘 데이터가 있으면 중단
     if (cache.data && cache.date === todayJST && cache.translated) {
-        console.log('[OhaasaScraper] 오늘 업데이트 완료됨. 재시도 중단.');
-        retryCount = 0;
+        console.log('[OhaasaScraper] 오늘 업데이트 완료됨.');
         return;
     }
 
     const result = await fetchAndTranslate();
 
     if (result) {
-        console.log('[OhaasaScraper] ✅ 자동 업데이트 성공!');
-        retryCount = 0;
-    } else if (retryCount < MAX_RETRIES) {
-        retryCount++;
-        const delay = getRetryDelay(retryCount);
-        console.log(`[OhaasaScraper] ⏳ 재시도 ${retryCount}/${MAX_RETRIES} 예정 (${Math.round(delay / 60000)}분 후)`);
-
-        setTimeout(autoUpdateWithRetry, delay);
+        console.log(`[OhaasaScraper] ✅ 자동 업데이트 성공! (소스: ${result.source})`);
     } else {
-        console.log('[OhaasaScraper] ❌ 최대 재시도 횟수 도달. 다음 스케줄까지 대기.');
-        retryCount = 0;
+        console.log('[OhaasaScraper] ⏳ 오늘 데이터 아직 없음. 다음 스케줄에서 재시도.');
     }
 }
 
 /**
  * 자동 스케줄러 시작
- * 일본 시간 기준 아침 6시, 7시, 8시에 시도
+ * 매시간 정각에 시도 (06:00 ~ 12:00)
  */
 function startScheduler() {
     if (isSchedulerRunning) {
@@ -294,14 +359,11 @@ function startScheduler() {
         return;
     }
 
-    // JST 6:00, 7:00, 8:00 = UTC 21:00(전날), 22:00(전날), 23:00(전날)
-    // KST 기준으로는 6:00, 7:00, 8:00 (한국과 일본 시간 동일)
-
-    // 매일 아침 6시 (한국/일본 시간)에 첫 시도
-    schedulerTask = cron.schedule('0 6 * * *', async () => {
-        console.log('[OhaasaScraper] ⏰ 스케줄 시작 (06:00)');
-        retryCount = 0;
-        await autoUpdateWithRetry();
+    // 매일 06:00 ~ 12:00 사이 매시간 정각에 시도
+    schedulerTask = cron.schedule('0 6-12 * * *', async () => {
+        const hour = new Date().getHours();
+        console.log(`[OhaasaScraper] ⏰ 스케줄 실행 (${hour}:00)`);
+        await autoUpdate();
     }, {
         timezone: 'Asia/Tokyo'
     });
@@ -313,18 +375,18 @@ function startScheduler() {
             data: null,
             date: null,
             fetchedAt: null,
-            translated: false
+            translated: false,
+            source: null
         };
-        retryCount = 0;
     }, {
         timezone: 'Asia/Tokyo'
     });
 
     isSchedulerRunning = true;
-    console.log('[OhaasaScraper] 📅 자동 스케줄러 시작됨 (JST 06:00 시작, 재시도 지수 백오프)');
+    console.log('[OhaasaScraper] 📅 자동 스케줄러 시작됨 (JST 06:00~12:00 매시간)');
 
     // 시작 시 즉시 한번 시도
-    autoUpdateWithRetry();
+    autoUpdate();
 }
 
 /**
@@ -388,7 +450,8 @@ async function getZodiacFortune(zodiac) {
         ...fortune,
         date: data.date,
         fromCache: data.fromCache,
-        stale: data.stale
+        stale: data.stale,
+        source: data.source
     };
 }
 
@@ -424,8 +487,8 @@ function getCacheStatus() {
         date: cache.date,
         fetchedAt: cache.fetchedAt,
         translated: cache.translated,
-        isSchedulerRunning,
-        retryCount
+        source: cache.source,
+        isSchedulerRunning
     };
 }
 
