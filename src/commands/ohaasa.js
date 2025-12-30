@@ -198,7 +198,15 @@ function createSingleFortuneEmbed(fortune, userName) {
 
     // 럭키 아이템이 있을 경우에만 추가
     if (fortune.luckyItem) {
-        fields.push({ name: '🍀 럭키 아이템', value: fortune.luckyItem, inline: false });
+        // luckyItem이 객체인 경우 문자열로 변환
+        let luckyItemText = fortune.luckyItem;
+        if (typeof fortune.luckyItem === 'object') {
+            const parts = [];
+            if (fortune.luckyItem.luckyColor) parts.push(`럭키컬러: ${fortune.luckyItem.luckyColor}`);
+            if (fortune.luckyItem.luckyKey) parts.push(`행운의 열쇠: ${fortune.luckyItem.luckyKey}`);
+            luckyItemText = parts.join(' / ') || JSON.stringify(fortune.luckyItem);
+        }
+        fields.push({ name: '🍀 럭키 아이템', value: luckyItemText, inline: false });
     }
 
     return createEmbed({
