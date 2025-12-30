@@ -201,9 +201,13 @@ function createSingleFortuneEmbed(fortune, userName) {
         // luckyItem이 객체인 경우 문자열로 변환
         let luckyItemText = fortune.luckyItem;
         if (typeof fortune.luckyItem === 'object') {
+            const item = fortune.luckyItem;
             const parts = [];
-            if (fortune.luckyItem.luckyColor) parts.push(`럭키컬러: ${fortune.luckyItem.luckyColor}`);
-            if (fortune.luckyItem.luckyKey) parts.push(`행운의 열쇠: ${fortune.luckyItem.luckyKey}`);
+            // 다양한 키 이름 지원
+            const color = item.luckyColor || item.color || item.럭키컬러;
+            const key = item.luckyKey || item.key || item.행운의열쇠;
+            if (color) parts.push(`럭키컬러: ${color}`);
+            if (key) parts.push(`행운의 열쇠: ${key}`);
             luckyItemText = parts.join(' / ') || JSON.stringify(fortune.luckyItem);
         }
         fields.push({ name: '🍀 럭키 아이템', value: luckyItemText, inline: false });
