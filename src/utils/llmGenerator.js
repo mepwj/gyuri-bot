@@ -137,24 +137,25 @@ const translateOhaasaFortunes = async (fortunes) => {
         return text;
     }).join('\n');
 
-    const prompt = `다음 일본어 별자리 운세들을 한국어로 자연스럽게 번역해주세요.
+    const prompt = `다음 ${fortunes.length}개의 일본어 별자리 운세를 한국어로 번역해주세요.
 
 번역 규칙:
-1. 한국인이 자연스럽게 읽을 수 있도록 의역해주세요
-2. 일본 특유의 표현은 한국 정서에 맞게 바꿔주세요
-3. 럭키 아이템이 없는 경우(null) luckyItem을 null로 유지하세요
-4. 간결하고 이해하기 쉽게 번역해주세요
+1. 반드시 ${fortunes.length}개 항목을 모두 번역해주세요 (누락 금지)
+2. 한국인이 자연스럽게 읽을 수 있도록 의역해주세요
+3. 일본 특유의 표현은 한국 정서에 맞게 바꿔주세요
+4. 럭키 아이템(색상/아이템)도 반드시 한국어로 번역해주세요
+5. 럭키 아이템이 없는 경우 luckyItem을 null로 유지하세요
 
 ${fortuneTexts}
 
-JSON 배열 형식으로만 답변해주세요. 럭키 아이템이 없으면 null:
-[{"fortune": "번역된 운세", "luckyItem": "번역된 럭키" 또는 null}, ...]`;
+반드시 ${fortunes.length}개 항목의 JSON 배열로 답변:
+[{"fortune": "한국어 번역", "luckyItem": {"color": "번역된 색상", "key": "번역된 아이템"} 또는 null}, ...]`;
 
     try {
         console.log('[LLM] 번역 요청 시작...');
         const result = await generateWithLLM(prompt, {
-            systemPrompt: '당신은 일본어-한국어 번역 전문가입니다. 일본 별자리 운세를 한국인이 쉽게 이해할 수 있도록 자연스러운 한국어로 번역합니다. 반드시 JSON 배열 형식으로만 응답하세요.',
-            maxTokens: 2000,
+            systemPrompt: '당신은 일본어-한국어 번역 전문가입니다. 일본 별자리 운세를 한국인이 쉽게 이해할 수 있도록 자연스러운 한국어로 번역합니다. 반드시 요청된 개수만큼 JSON 배열로 응답하세요. 절대 항목을 누락하지 마세요.',
+            maxTokens: 3000,
             temperature: 0.3
         });
 
@@ -165,12 +166,48 @@ JSON 배열 형식으로만 답변해주세요. 럭키 아이템이 없으면 nu
             if (jsonMatch) {
                 console.log('[LLM] JSON 파싱 성공');
                 const parsed = JSON.parse(jsonMatch[0]);
-                return fortunes.map((f, i) => ({
-                    ...f,
-                    fortune: parsed[i]?.fortune || f.fortune,
-                    luckyItem: parsed[i]?.luckyItem !== undefined ? parsed[i].luckyItem : f.luckyItem,
-                    translated: true
-                }));
+
+                // 배열 길이 검증
+                if (parsed.length !== fortunes.length) {
+                    console.error(`[LLM] 번역 배열 길이 불일치: 원본=${fortunes.length}, 번역=${parsed.length}`);
+                }
+
+                return fortunes.map((f, i) => {
+                    const translatedFortune = parsed[i]?.fortune;
+                    const translatedLuckyItem = parsed[i]?.luckyItem;
+
+                    // 번역이 누락되었거나 여전히 일본어인지 확인
+                    const isJapanese = (text) => text && /[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF]/.test(text);
+                    const fortuneOk = translatedFortune && !isJapanese(translatedFortune);
+
+                    if (!fortuneOk) {
+                        console.warn(`[LLM] 번역 누락/실패 (인덱스 ${i}, ${f.zodiacKo}): fortune=${translatedFortune ? '일본어' : '없음'}`);
+                    }
+
+                    // luckyItem 처리: 객체면 문자열로 변환
+                    let finalLuckyItem = f.luckyItem;
+                    if (translatedLuckyItem !== undefined && translatedLuckyItem !== null) {
+                        if (typeof translatedLuckyItem === 'object') {
+                            const color = translatedLuckyItem.luckyColor || translatedLuckyItem.color;
+                            const key = translatedLuckyItem.luckyKey || translatedLuckyItem.key;
+                            if (color || key) {
+                                const parts = [];
+                                if (color) parts.push(`럭키컬러: ${color}`);
+                                if (key) parts.push(`행운의 열쇠: ${key}`);
+                                finalLuckyItem = parts.join(' / ');
+                            }
+                        } else {
+                            finalLuckyItem = translatedLuckyItem;
+                        }
+                    }
+
+                    return {
+                        ...f,
+                        fortune: fortuneOk ? translatedFortune : f.fortune,
+                        luckyItem: finalLuckyItem,
+                        translated: fortuneOk
+                    };
+                });
             } else {
                 console.error('[LLM] JSON 배열 매칭 실패. 응답:', result);
             }
