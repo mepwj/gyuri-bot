@@ -172,41 +172,75 @@ ${fortuneTexts}
                     console.error(`[LLM] 번역 배열 길이 불일치: 원본=${fortunes.length}, 번역=${parsed.length}`);
                 }
 
-                return fortunes.map((f, i) => {
-                    const translatedFortune = parsed[i]?.fortune;
-                    const translatedLuckyItem = parsed[i]?.luckyItem;
+                // 일본어 감지 함수
+                const isJapanese = (text) => text && /[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF]/.test(text);
 
-                    // 번역이 누락되었거나 여전히 일본어인지 확인
-                    const isJapanese = (text) => text && /[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF]/.test(text);
-                    const fortuneOk = translatedFortune && !isJapanese(translatedFortune);
-
-                    if (!fortuneOk) {
-                        console.warn(`[LLM] 번역 누락/실패 (인덱스 ${i}, ${f.zodiacKo}): fortune=${translatedFortune ? '일본어' : '없음'}`);
+                // luckyItem 객체를 문자열로 변환하는 함수
+                const formatLuckyItem = (translatedLuckyItem, originalLuckyItem) => {
+                    if (translatedLuckyItem === undefined || translatedLuckyItem === null) {
+                        return originalLuckyItem;
                     }
-
-                    // luckyItem 처리: 객체면 문자열로 변환
-                    let finalLuckyItem = f.luckyItem;
-                    if (translatedLuckyItem !== undefined && translatedLuckyItem !== null) {
-                        if (typeof translatedLuckyItem === 'object') {
-                            const color = translatedLuckyItem.luckyColor || translatedLuckyItem.color;
-                            const key = translatedLuckyItem.luckyKey || translatedLuckyItem.key;
-                            if (color || key) {
-                                const parts = [];
-                                if (color) parts.push(`럭키컬러: ${color}`);
-                                if (key) parts.push(`행운의 열쇠: ${key}`);
-                                finalLuckyItem = parts.join(' / ');
-                            }
-                        } else {
-                            finalLuckyItem = translatedLuckyItem;
+                    if (typeof translatedLuckyItem === 'object') {
+                        const color = translatedLuckyItem.luckyColor || translatedLuckyItem.color;
+                        const key = translatedLuckyItem.luckyKey || translatedLuckyItem.key;
+                        if (color || key) {
+                            const parts = [];
+                            if (color) parts.push(`럭키컬러: ${color}`);
+                            if (key) parts.push(`행운의 열쇠: ${key}`);
+                            return parts.join(' / ');
                         }
                     }
+                    return translatedLuckyItem;
+                };
+
+                // 1차 매핑: 일괄 번역 결과 적용
+                const results = fortunes.map((f, i) => {
+                    const translatedFortune = parsed[i]?.fortune;
+                    const translatedLuckyItem = parsed[i]?.luckyItem;
+                    const fortuneOk = translatedFortune && !isJapanese(translatedFortune);
 
                     return {
                         ...f,
                         fortune: fortuneOk ? translatedFortune : f.fortune,
-                        luckyItem: finalLuckyItem,
-                        translated: fortuneOk
+                        luckyItem: formatLuckyItem(translatedLuckyItem, f.luckyItem),
+                        translated: fortuneOk,
+                        _needsRetry: !fortuneOk
                     };
+                });
+
+                // 2차: 누락된 항목 개별 재번역
+                const failedItems = results.filter(r => r._needsRetry);
+                if (failedItems.length > 0) {
+                    console.log(`[LLM] ${failedItems.length}개 항목 개별 재번역 시작...`);
+
+                    for (const item of failedItems) {
+                        const idx = results.findIndex(r => r.zodiacKo === item.zodiacKo);
+                        console.log(`[LLM] 개별 번역: ${item.zodiacKo}`);
+
+                        try {
+                            const retryResult = await translateOhaasaFortune(
+                                item.originalFortune || item.fortune,
+                                item.originalLuckyItem || item.luckyItem
+                            );
+
+                            if (retryResult.fortune && !isJapanese(retryResult.fortune)) {
+                                results[idx].fortune = retryResult.fortune;
+                                results[idx].luckyItem = retryResult.luckyItem;
+                                results[idx].translated = true;
+                                console.log(`[LLM] ✅ ${item.zodiacKo} 개별 번역 성공`);
+                            } else {
+                                console.warn(`[LLM] ❌ ${item.zodiacKo} 개별 번역도 실패`);
+                            }
+                        } catch (retryError) {
+                            console.error(`[LLM] ${item.zodiacKo} 개별 번역 오류:`, retryError.message);
+                        }
+                    }
+                }
+
+                // _needsRetry 필드 제거
+                return results.map(r => {
+                    const { _needsRetry, ...rest } = r;
+                    return rest;
                 });
             } else {
                 console.error('[LLM] JSON 배열 매칭 실패. 응답:', result);
