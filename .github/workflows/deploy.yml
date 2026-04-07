@@ -16,7 +16,7 @@ jobs:
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
+        key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.PORT }}
         script: |
           # 프로젝트 디렉토리 확인 및 생성
