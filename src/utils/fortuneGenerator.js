@@ -5,6 +5,12 @@ let openai = null;
 // 하루 캐시: key = "userId:category:YYYY-MM-DD"
 const fortuneCache = new Map();
 
+// API 호출 제한
+const DAILY_GLOBAL_LIMIT = 200;   // 전역 하루 최대 API 호출
+const DAILY_USER_LIMIT = 5;       // 유저당 하루 최대 API 호출 (5개 카테고리)
+let dailyApiCalls = { date: '', count: 0 };
+const userApiCalls = new Map();   // userId -> { date, count }
+
 const initializeOpenAI = () => {
     if (!openai && process.env.OPENAI_API_KEY) {
         openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
@@ -27,12 +33,52 @@ setInterval(() => {
     }
 }, 60 * 60 * 1000);
 
+const checkRateLimit = (userId) => {
+    const today = new Date().toLocaleDateString('ko-KR', { timeZone: 'Asia/Seoul' });
+
+    // 전역 제한 체크 (날짜 바뀌면 리셋)
+    if (dailyApiCalls.date !== today) {
+        dailyApiCalls = { date: today, count: 0 };
+    }
+    if (dailyApiCalls.count >= DAILY_GLOBAL_LIMIT) {
+        return { limited: true, reason: 'global' };
+    }
+
+    // 유저별 제한 체크
+    const userData = userApiCalls.get(userId);
+    if (userData && userData.date === today && userData.count >= DAILY_USER_LIMIT) {
+        return { limited: true, reason: 'user' };
+    }
+
+    return { limited: false };
+};
+
+const recordApiCall = (userId) => {
+    const today = new Date().toLocaleDateString('ko-KR', { timeZone: 'Asia/Seoul' });
+
+    dailyApiCalls.count++;
+
+    const userData = userApiCalls.get(userId);
+    if (!userData || userData.date !== today) {
+        userApiCalls.set(userId, { date: today, count: 1 });
+    } else {
+        userData.count++;
+    }
+};
+
 const generateFortune = async (userName, userId, category = '총운') => {
     const cacheKey = getTodayKey(userId, category);
 
-    // 캐시에 있으면 바로 반환 (하루에 같은 운세)
+    // 캐시에 있으면 바로 반환 (하루에 같은 운세, API 호출 없음)
     if (fortuneCache.has(cacheKey)) {
         return fortuneCache.get(cacheKey);
+    }
+
+    // API 호출 제한 체크
+    const rateCheck = checkRateLimit(userId);
+    if (rateCheck.limited) {
+        console.log(`[FortuneGenerator] Rate limited: ${rateCheck.reason} (user: ${userId})`);
+        return getFallbackFortune(category);
     }
 
     const ai = initializeOpenAI();
@@ -86,6 +132,9 @@ const generateFortune = async (userName, userId, category = '총운') => {
 
         // score를 숫자로 보장
         fortune.score = Number(fortune.score) || 50;
+
+        // API 호출 카운트 기록
+        recordApiCall(userId);
 
         // 캐시에 저장
         fortuneCache.set(cacheKey, fortune);
