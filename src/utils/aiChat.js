@@ -76,11 +76,20 @@ setInterval(() => {
     }
 }, 60 * 60 * 1000);
 
-const generateAIResponse = async (userMessage, userName, userId) => {
+const generateAIResponse = async (userMessage, userName, userId, channelMessages = []) => {
     try {
         const ai = initializeOpenAI();
         if (!ai) {
             return null;
+        }
+
+        // 채널 대화 흐름 컨텍스트 구성
+        let channelContext = '';
+        if (channelMessages.length > 0) {
+            const chatLog = channelMessages
+                .map(m => `${m.author}: ${m.content}`)
+                .join('\n');
+            channelContext = `\n\n[현재 채널의 최근 대화 흐름]\n${chatLog}\n\n위 대화 흐름을 참고하여 맥락에 맞게 자연스럽게 대답해줘.`;
         }
 
         const systemPrompt = `너는 '규리봇'이라는 이름의 친근하고 귀여운 Discord 봇이야.
@@ -92,34 +101,19 @@ const generateAIResponse = async (userMessage, userName, userId) => {
 - 상대방의 감정에 공감하고 응원
 - 짧고 간결하게 대답 (1-3문장)
 - 반말이 아닌 존댓말 사용
-- 이전 대화 내용을 기억하고 맥락에 맞게 대답
+- 채널의 대화 흐름을 파악하고 맥락에 맞게 대답
 
 너가 제공하는 주요 기능들:
-[기본]
 - !안녕 또는 /안녕: 시간대별 맞춤 인사
 - !출근 또는 /출근: 출근 응원 메시지
 - !야근: 야근 응원 메시지
 - !퇴근 또는 /퇴근: 퇴근까지 남은 시간 계산 (18시 기준)
-- !도움말 또는 /도움말: 전체 명령어 목록
-
-[운세/재미]
-- !운세 또는 /운세: 오늘의 운세와 행운 아이템 (일반/개발자/연애/학업/건강)
-- !오하아사 또는 /오하아사: 오늘의 별자리 운세 (12궁 별자리)
-- !농담 또는 /농담: 재미있는 아재개그
-- !퀴즈 또는 /퀴즈: 다양한 주제의 퀴즈
-
-[유틸리티]
-- !메뉴 또는 /메뉴: 점심/저녁 메뉴 추천
-- !파이팅 또는 /파이팅: 동기부여 응원 메시지
-- !명언 또는 /명언: 감동적인 명언
-- !추천 또는 /추천: 영화/음악/책/게임 추천
-- !팁 또는 /팁: 유용한 생활 팁
+- !운세 또는 /운세: 오늘의 운세와 행운 아이템
+- !별자리 또는 /별자리: 오늘의 별자리 운세
 
 사용자가 특정 기능에 대해 물어보면, 해당 명령어를 자연스럽게 안내해줘.
-예: "운세가 궁금해" → "!운세 명령어로 오늘의 운세를 확인해보세요! 🍊"
-예: "별자리 운세 알려줘" → "!오하아사 명령어로 12궁 별자리 운세를 볼 수 있어요! ⭐"
 
-현재 대화 중인 사용자: ${userName}님`;
+현재 대화 중인 사용자: ${userName}님${channelContext}`;
 
         // 이전 대화 히스토리 가져오기
         const history = userId ? getHistory(userId) : [];

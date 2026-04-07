@@ -19,11 +19,27 @@ module.exports = {
             // "규리야 " 다음에 메시지가 있는지 확인
             const gyuriPattern = /규리야\s+(.+)/;
             const match = message.content.match(gyuriPattern);
-            
+
             if (match && match[1]) {
+                // 채널의 최근 메시지 10개를 가져와서 대화 흐름 파악
+                let channelMessages = [];
+                try {
+                    const fetched = await message.channel.messages.fetch({ limit: 11 }); // 현재 메시지 포함 11개
+                    channelMessages = [...fetched.values()]
+                        .reverse() // 오래된 순서로 정렬
+                        .filter(m => m.id !== message.id) // 현재 메시지 제외
+                        .slice(-10) // 최근 10개
+                        .map(m => ({
+                            author: m.author.bot ? '규리봇' : getDisplayName(m),
+                            content: m.content
+                        }));
+                } catch (e) {
+                    // 메시지 fetch 실패 시 무시
+                }
+
                 // AI 응답 생성 시도
-                const aiResponse = await generateAIResponse(match[1], getDisplayName(message), message.author.id);
-                
+                const aiResponse = await generateAIResponse(match[1], getDisplayName(message), message.author.id, channelMessages);
+
                 if (aiResponse) {
                     // 타이핑 표시
                     await message.channel.sendTyping();
