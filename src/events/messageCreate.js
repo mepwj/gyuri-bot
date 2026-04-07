@@ -12,7 +12,7 @@ module.exports = {
         
         const mentionRegex = new RegExp(`^<@!?${client.user.id}>( |)$`);
         if (message.content.match(mentionRegex)) {
-            return message.reply(`안녕하세요! 저는 ${client.config.bot.name}이에요! 🍊\n\`${prefix}도움말\`로 명령어를 확인해보세요!`);
+            return message.reply(`안녕하세요! 저는 ${client.config.bot.name}이에요! 🍊`);
         }
         
         if (message.content.includes('규리야') && !message.content.startsWith(prefix)) {
