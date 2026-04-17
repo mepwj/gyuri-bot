@@ -23,6 +23,12 @@ const getTodayKey = (userId, category) => {
     return `${userId}:${category}:${today}`;
 };
 
+const normalizeScore = (score) => {
+    const numericScore = Number(score);
+    if (!Number.isFinite(numericScore)) return 0;
+    return Math.max(-100, Math.min(100, Math.round(numericScore)));
+};
+
 // 매일 자정에 캐시 정리
 setInterval(() => {
     const now = new Date().toLocaleDateString('ko-KR', { timeZone: 'Asia/Seoul' });
@@ -105,7 +111,7 @@ const generateFortune = async (userName, userId, category = '총운') => {
 반드시 아래 JSON 형식으로만 응답해:
 {
   "message": "3-4문장의 운세 메시지",
-  "score": 1~100 사이 점수(숫자만),
+  "score": -100~100 사이 점수(숫자만, 매우 나쁘면 음수, 보통이면 0 근처, 좋으면 양수),
   "luckyColor": "행운의 색 (예: 연보라색)",
   "luckyNumber": "행운의 숫자 (예: 7)",
   "luckyFood": "행운의 음식 (한국 음식 위주, 예: 된장찌개)",
@@ -130,8 +136,8 @@ const generateFortune = async (userName, userId, category = '총운') => {
         const raw = completion.choices[0].message.content.trim();
         const fortune = JSON.parse(raw);
 
-        // score를 숫자로 보장
-        fortune.score = Number(fortune.score) || 50;
+        // score를 -100~100 사이 정수로 보장
+        fortune.score = normalizeScore(fortune.score);
 
         // API 호출 카운트 기록
         recordApiCall(userId);
@@ -158,7 +164,7 @@ const getFallbackFortune = (category) => {
 
     return {
         message: fallbacks[category] || fallbacks['총운'],
-        score: Math.floor(Math.random() * 41) + 40, // 40~80
+        score: Math.floor(Math.random() * 201) - 100, // -100~100
         luckyColor: '하늘색',
         luckyNumber: String(Math.floor(Math.random() * 9) + 1),
         luckyFood: '김치찌개',

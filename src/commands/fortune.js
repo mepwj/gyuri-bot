@@ -61,13 +61,11 @@ module.exports = {
             const fortune = await generateFortune(userName, userId, category);
 
             const catInfo = CATEGORIES[category];
-            const scoreBar = getScoreBar(fortune.score);
-
             const embed = createEmbed({
                 title: `${catInfo.emoji} ${userName}님의 오늘의 ${category}`,
                 description: fortune.message,
                 fields: [
-                    { name: '운세 점수', value: `${scoreBar} **${fortune.score}점**`, inline: false },
+                    { name: '운세 점수', value: `**${fortune.score}점**`, inline: false },
                     { name: '🎨 행운의 색', value: fortune.luckyColor, inline: true },
                     { name: '🔢 행운의 숫자', value: fortune.luckyNumber, inline: true },
                     { name: '🍽️ 행운의 음식', value: fortune.luckyFood, inline: true },
@@ -112,13 +110,12 @@ module.exports = {
                     await i.deferUpdate();
 
                     const newFortune = await generateFortune(userName, userId, newCategory);
-                    const newScoreBar = getScoreBar(newFortune.score);
 
                     const newEmbed = createEmbed({
                         title: `${newCatInfo.emoji} ${userName}님의 오늘의 ${newCategory}`,
                         description: newFortune.message,
                         fields: [
-                            { name: '운세 점수', value: `${newScoreBar} **${newFortune.score}점**`, inline: false },
+                            { name: '운세 점수', value: `**${newFortune.score}점**`, inline: false },
                             { name: '🎨 행운의 색', value: newFortune.luckyColor, inline: true },
                             { name: '🔢 행운의 숫자', value: newFortune.luckyNumber, inline: true },
                             { name: '🍽️ 행운의 음식', value: newFortune.luckyFood, inline: true },
@@ -182,15 +179,10 @@ module.exports = {
     }
 };
 
-function getScoreBar(score) {
-    const filled = Math.round(score / 10);
-    const empty = 10 - filled;
-    return '█'.repeat(filled) + '░'.repeat(empty);
-}
-
 function getScoreColor(score) {
-    if (score >= 80) return 0xffd700; // 금색
-    if (score >= 60) return 0xff9500; // 주황
-    if (score >= 40) return 0x4a90d9; // 파랑
-    return 0x808080; // 회색
+    if (score >= 75) return 0xffd700; // 금색
+    if (score >= 25) return 0xff9500; // 주황
+    if (score >= 0) return 0x4a90d9; // 파랑
+    if (score >= -50) return 0x808080; // 회색
+    return 0xff6b6b; // 빨강
 }
