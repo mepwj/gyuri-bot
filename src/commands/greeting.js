@@ -10,7 +10,7 @@ module.exports = {
         .setDescription('규리가 인사해요!'),
     
     name: '안녕',
-    aliases: ['규리야', 'hello', 'hi'],
+    aliases: ['hello', 'hi'],
     description: '규리가 인사해요!',
     cooldown: 3,
     

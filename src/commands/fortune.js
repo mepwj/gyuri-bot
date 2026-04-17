@@ -28,7 +28,7 @@ module.exports = {
                 )),
 
     name: '운세',
-    aliases: ['fortune', '오늘운세', '오늘의운세'],
+    aliases: ['ㅇㅅ', 'fortune', '오늘운세', '오늘의운세'],
     description: '오늘의 운세를 알려드려요!',
     cooldown: 5,
 
