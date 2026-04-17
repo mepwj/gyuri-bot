@@ -44,6 +44,7 @@ const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
             console.log(`  /${cmd.name} - ${cmd.description}`);
         });
 
+        process.exit(0);
     } catch (error) {
         console.error('❌ 슬래시 명령어 등록 중 오류 발생:', error);
         console.error('\n🔍 문제 해결 방법:');
@@ -51,5 +52,6 @@ const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
         console.error('2. CLIENT_ID가 올바른지 확인하세요');
         console.error('3. 봇이 서버에 초대되어 있는지 확인하세요');
         console.error('4. 봇에 applications.commands 권한이 있는지 확인하세요');
+        process.exit(1);
     }
 })();
