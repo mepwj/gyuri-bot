@@ -27,6 +27,7 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             set -e
+            export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 
             if [ ! -d "$HOME/gyuri-bot" ]; then
               git clone https://github.com/${{ github.repository }}.git "$HOME/gyuri-bot"
