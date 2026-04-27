@@ -1,4 +1,4 @@
-name: Deploy to Ubuntu Server
+name: Deploy to Mac mini via Tailscale
 
 on:
   push:
@@ -7,43 +7,42 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - uses: actions/checkout@v3
-    
-    - name: Deploy to server
-      uses: appleboy/ssh-action@v0.1.5
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.SSH_KEY }}
-        port: ${{ secrets.PORT }}
-        script: |
-          # 프로젝트 디렉토리 확인 및 생성
-          if [ ! -d "$HOME/gyuri-bot" ]; then
-            cd "$HOME"
-            git clone https://github.com/${{ github.repository }}.git gyuri-bot
-          fi
-          cd "$HOME/gyuri-bot"
-          
-          # 최신 코드 pull
-          git pull origin main
-          
-          # .env 파일 생성 (GitHub Secrets에서 환경변수 설정)
-          echo "DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}" > .env
-          echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> .env
-          echo "GUILD_ID=${{ secrets.GUILD_ID }}" >> .env
-          echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
-          
-          # 디버깅: .env 파일 내용 확인 (API 키는 마스킹)
-          echo "=== .env 파일 확인 ==="
-          cat .env | sed 's/\(OPENAI_API_KEY=\).*/\1***MASKED***/'
-          
-          # Docker Compose 실행 (새로운 문법 사용)
-          docker compose build --no-cache
-          docker compose run --rm --no-deps gyuri-bot npm run deploy
-          docker compose down
-          docker compose up -d
-          
-          # 로그 확인 (stderr를 stdout으로 합쳐서 깔끔하게 출력)
-          docker compose logs --tail=50 2>&1
+      - uses: actions/checkout@v4
+
+      - name: Tailscale 연결
+        uses: tailscale/github-action@v3
+        with:
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          oauth-client-secret: ${{ secrets.TS_OAUTH_SECRET }}
+          tags: tag:ci
+
+      - name: 배포 실행
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            set -e
+
+            if [ ! -d "$HOME/gyuri-bot" ]; then
+              git clone https://github.com/${{ github.repository }}.git "$HOME/gyuri-bot"
+            fi
+            cd "$HOME/gyuri-bot"
+            git pull origin main
+
+            umask 077
+            cat > .env <<EOF
+            DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}
+            CLIENT_ID=${{ secrets.CLIENT_ID }}
+            GUILD_ID=${{ secrets.GUILD_ID }}
+            OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
+            EOF
+
+            docker compose build
+            docker compose run --rm --no-deps gyuri-bot npm run deploy
+            docker compose up -d --remove-orphans
+            docker compose logs --tail=50 2>&1

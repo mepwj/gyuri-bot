@@ -38,6 +38,7 @@ This is a Discord bot built with Discord.js v14 that provides various utility an
 - Bot responds to multiple aliases for each command (e.g., '안녕', '규리야', 'hello', 'hi')
 
 ### Deployment
-- GitHub Actions workflow automatically deploys to Ubuntu server on push to main branch
-- Uses Docker Compose for containerized deployment
-- Environment variables must be set in GitHub Secrets for automated deployment
+- GitHub Actions workflow automatically deploys to a Mac mini (Apple Silicon) reached via Tailscale on push to main
+- The runner joins the tailnet using `tailscale/github-action`, then SSHes in with `appleboy/ssh-action`
+- Container runtime on the Mac mini is colima + docker compose
+- Environment variables must be set in GitHub Secrets (see `DOCKER_DEPLOY.md`)
